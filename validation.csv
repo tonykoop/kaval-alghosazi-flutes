@@ -1,0 +1,79 @@
+member_id,test_id,target,target_value,measured_value,tolerance,environment,pass_fail,action
+KAV-GS3-5H,VAL-ROOT,root G#3,207.652 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Trim foot shorter to raise pitch; rebuild/extend foot if sharp.
+KAV-GS3-5H,VAL-H1,hole 1 offset +2 st,233.082 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-GS3-5H,VAL-H2,hole 2 offset +3 st,246.942 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-GS3-5H,VAL-H3,hole 3 offset +6 st,293.665 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-GS3-5H,VAL-H4,hole 4 offset +7 st,311.127 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-GS3-5H,VAL-H5,hole 5 offset +8 st,329.628 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-A3-5H,VAL-ROOT,root A3,220.000 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Trim foot shorter to raise pitch; rebuild/extend foot if sharp.
+KAV-A3-5H,VAL-H1,hole 1 offset +2 st,246.942 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-A3-5H,VAL-H2,hole 2 offset +3 st,261.626 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-A3-5H,VAL-H3,hole 3 offset +6 st,311.127 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-A3-5H,VAL-H4,hole 4 offset +7 st,329.628 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-A3-5H,VAL-H5,hole 5 offset +8 st,349.228 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-B3-5H,VAL-ROOT,root B3,246.942 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Trim foot shorter to raise pitch; rebuild/extend foot if sharp.
+KAV-B3-5H,VAL-H1,hole 1 offset +2 st,277.183 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-B3-5H,VAL-H2,hole 2 offset +3 st,293.665 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-B3-5H,VAL-H3,hole 3 offset +6 st,349.228 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-B3-5H,VAL-H4,hole 4 offset +7 st,369.994 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-B3-5H,VAL-H5,hole 5 offset +8 st,391.995 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-C4-5H,VAL-ROOT,root C4,261.626 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Trim foot shorter to raise pitch; rebuild/extend foot if sharp.
+KAV-C4-5H,VAL-H1,hole 1 offset +2 st,293.665 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-C4-5H,VAL-H2,hole 2 offset +3 st,311.127 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-C4-5H,VAL-H3,hole 3 offset +6 st,369.994 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-C4-5H,VAL-H4,hole 4 offset +7 st,391.995 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-C4-5H,VAL-H5,hole 5 offset +8 st,415.305 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-A3-7H,VAL-ROOT,root A3,220.000 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Trim foot shorter to raise pitch; rebuild/extend foot if sharp.
+KAV-A3-7H,VAL-H1,hole 1 offset +2 st,246.942 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-A3-7H,VAL-H2,hole 2 offset +3 st,261.626 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-A3-7H,VAL-H3,hole 3 offset +4 st,277.183 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-A3-7H,VAL-H4,hole 4 offset +6 st,311.127 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-A3-7H,VAL-H5,hole 5 offset +7 st,329.628 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-A3-7H,VAL-H6,hole 6 offset +8 st,349.228 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-A3-7H,VAL-H7,hole 7 offset +9 st,369.994 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-AS3-7H,VAL-ROOT,root A#3,233.082 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Trim foot shorter to raise pitch; rebuild/extend foot if sharp.
+KAV-AS3-7H,VAL-H1,hole 1 offset +2 st,261.626 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-AS3-7H,VAL-H2,hole 2 offset +3 st,277.183 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-AS3-7H,VAL-H3,hole 3 offset +4 st,293.665 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-AS3-7H,VAL-H4,hole 4 offset +6 st,329.628 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-AS3-7H,VAL-H5,hole 5 offset +7 st,349.228 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-AS3-7H,VAL-H6,hole 6 offset +8 st,369.994 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-AS3-7H,VAL-H7,hole 7 offset +9 st,391.995 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-B3-7H,VAL-ROOT,root B3,246.942 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Trim foot shorter to raise pitch; rebuild/extend foot if sharp.
+KAV-B3-7H,VAL-H1,hole 1 offset +2 st,277.183 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-B3-7H,VAL-H2,hole 2 offset +3 st,293.665 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-B3-7H,VAL-H3,hole 3 offset +4 st,311.127 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-B3-7H,VAL-H4,hole 4 offset +6 st,349.228 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-B3-7H,VAL-H5,hole 5 offset +7 st,369.994 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-B3-7H,VAL-H6,hole 6 offset +8 st,391.995 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+KAV-B3-7H,VAL-H7,hole 7 offset +9 st,415.305 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-AS3-J2,VAL-ROOT,root A#3,233.082 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Trim foot shorter to raise pitch; rebuild/extend foot if sharp.
+ALG-AS3-J2,VAL-H1,hole 1 offset +2 st,261.626 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-AS3-J2,VAL-H2,hole 2 offset +4 st,293.665 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-AS3-J2,VAL-H3,hole 3 offset +7 st,349.228 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-AS3-J2,VAL-H4,hole 4 offset +9 st,391.995 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-AS3-J2,VAL-H5,hole 5 offset +11 st,440.0 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-AS3-J2,VAL-H6,hole 6 offset +12 st,466.164 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-AS3-SOLID,VAL-ROOT,root A#3,233.082 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Trim foot shorter to raise pitch; rebuild/extend foot if sharp.
+ALG-AS3-SOLID,VAL-H1,hole 1 offset +2 st,261.626 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-AS3-SOLID,VAL-H2,hole 2 offset +4 st,293.665 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-AS3-SOLID,VAL-H3,hole 3 offset +7 st,349.228 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-AS3-SOLID,VAL-H4,hole 4 offset +9 st,391.995 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-AS3-SOLID,VAL-H5,hole 5 offset +11 st,440.0 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-AS3-SOLID,VAL-H6,hole 6 offset +12 st,466.164 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-A3-J3,VAL-ROOT,root A3,220.000 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Trim foot shorter to raise pitch; rebuild/extend foot if sharp.
+ALG-A3-J3,VAL-H1,hole 1 offset +2 st,246.942 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-A3-J3,VAL-H2,hole 2 offset +4 st,277.183 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-A3-J3,VAL-H3,hole 3 offset +7 st,329.628 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-A3-J3,VAL-H4,hole 4 offset +9 st,369.994 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-A3-J3,VAL-H5,hole 5 offset +11 st,415.305 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-A3-J3,VAL-H6,hole 6 offset +12 st,440.0 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-B3-SOLID,VAL-ROOT,root B3,246.942 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Trim foot shorter to raise pitch; rebuild/extend foot if sharp.
+ALG-B3-SOLID,VAL-H1,hole 1 offset +2 st,277.183 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-B3-SOLID,VAL-H2,hole 2 offset +4 st,311.127 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-B3-SOLID,VAL-H3,hole 3 offset +7 st,369.994 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-B3-SOLID,VAL-H4,hole 4 offset +9 st,415.305 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-B3-SOLID,VAL-H5,hole 5 offset +11 st,466.164 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALG-B3-SOLID,VAL-H6,hole 6 offset +12 st,493.883 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+ALL,VAL-FIPPLE,clean attack and stable octave jump,no choking at normal breath,,subjective plus recording,TBD temp/RH,,"Adjust windway height, splitting edge sharpness, and window length."
+DOUBLE,VAL-DRONE-BEAT,melody/drone pressure interaction,no severe stealing or beating unless intentional,,recorded comparison,TBD temp/RH,,"Restrict windway, retune drone vent, or separate mouth inlets."

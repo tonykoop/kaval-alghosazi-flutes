@@ -1,0 +1,39 @@
+{
+  "packet_dir": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes",
+  "title": "Kaval + Alghosazi Fipple Flutes Capstone",
+  "generated": "2026-05-05",
+  "files_included": [
+    "design.md",
+    "bom.csv",
+    "sourcing.csv",
+    "cut-list.csv",
+    "drawing-brief.md",
+    "assembly-manual.md",
+    "validation.csv",
+    "supplier-rfq.md",
+    "visual-bom-brief.md",
+    "wolfram-starter.wl",
+    "README.md",
+    "alghosazi-hole-schedule.csv",
+    "double-drone-spec.csv",
+    "family-spec.csv",
+    "hole-schedule.csv",
+    "kaval-hole-schedule.csv",
+    "photo-shotlist.md",
+    "risks.md",
+    "sources.md"
+  ],
+  "outputs": {
+    "capstone_deck_markdown": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes/capstone-deck.md",
+    "capstone_deck_pptx": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes/capstone-deck.pptx",
+    "print_packet_markdown": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes/print-packet.md",
+    "print_packet_html": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes/print-packet.html",
+    "print_packet_pdf": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes/print-packet.pdf",
+    "print_packet_docx": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes/print-packet.docx",
+    "bom_build_method_docx": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes/Kaval-Alghosazi-BOM-Build-Method.docx"
+  },
+  "notes": [
+    "Use the HTML file for browser print-to-PDF when no PDF tooling is available.",
+    "PPTX/DOCX were produced with pandoc; PDF was produced with the local simple PDF writer."
+  ]
+}

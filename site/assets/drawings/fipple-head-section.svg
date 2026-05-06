@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540" width="1000" height="540" font-family="Arial, Helvetica, sans-serif">
+<rect width="1000" height="540" fill="white" stroke="black"/>
+<text x="40" y="45" font-size="24" font-weight="bold">Fujara-Style End-Mouth Fipple Head Section</text>
+<text x="40" y="72" font-size="13">Air path: end mouth inlet -> windway/flue plug -> true sound window -> splitting edge -> main bore</text>
+<rect x="120" y="170" width="720" height="130" rx="18" fill="#f3c37d" stroke="#4a2a10" stroke-width="3"/>
+<rect x="120" y="210" width="720" height="50" fill="#fff8e8" stroke="#4a2a10" stroke-width="2"/>
+<rect x="120" y="210" width="105" height="50" fill="#111"/>
+<text x="92" y="200" font-size="13">end mouth inlet</text>
+<rect x="240" y="198" width="380" height="18" fill="#d89a4a" stroke="#4a2a10"/>
+<text x="335" y="188" font-size="13">removable flue plug / windway 0.033-0.045 in</text>
+<rect x="620" y="160" width="95" height="68" fill="white" stroke="#4a2a10" stroke-width="2"/>
+<polygon points="715,228 780,170 780,245" fill="#be7d36" stroke="#4a2a10" stroke-width="2"/>
+<text x="615" y="145" font-size="13">true sound window</text>
+<text x="745" y="160" font-size="13">splitting edge</text>
+<line x1="120" y1="235" x2="840" y2="235" stroke="#555" stroke-dasharray="8,6"/>
+<text x="400" y="330" font-size="13">main bore continues to tuned foot</text>
+<line x1="225" y1="360" x2="620" y2="360" stroke="black" marker-end="url(#arrow)"/>
+<text x="330" y="385" font-size="13">controlled air jet</text>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="black"/></marker></defs>
+<text x="40" y="480" font-size="12">Build note: prove this geometry as P0 before drilling a full flute body. Keep the plug removable until final voicing.</text>
+</svg>

@@ -1,0 +1,25 @@
+member_id,instrument,hole_no_from_foot,offset_st,target_hz,x_from_labium_in,x_from_foot_in,starter_drill_in,target_final_dia_in,orientation,formula
+ALG-AS3-J2,Fipple Alghosazi,1,2,261.626,27.158,3.326,0.1875,0.2500,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-AS3-J2,Fipple Alghosazi,2,4,293.665,24.195,6.289,0.1875,0.2500,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-AS3-J2,Fipple Alghosazi,3,7,349.228,20.345,10.138,0.1875,0.2500,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-AS3-J2,Fipple Alghosazi,4,9,391.995,18.126,12.358,0.2188,0.3125,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-AS3-J2,Fipple Alghosazi,5,11,440.0,16.148,14.335,0.2188,0.3125,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-AS3-J2,Fipple Alghosazi,6,12,466.164,15.242,15.242,0.2188,0.3125,back thumb,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-AS3-SOLID,Fipple Alghosazi,1,2,261.626,28.21,3.455,0.1875,0.2500,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-AS3-SOLID,Fipple Alghosazi,2,4,293.665,25.132,6.532,0.1875,0.2500,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-AS3-SOLID,Fipple Alghosazi,3,7,349.228,21.134,10.531,0.1875,0.2500,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-AS3-SOLID,Fipple Alghosazi,4,9,391.995,18.828,12.837,0.2188,0.3125,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-AS3-SOLID,Fipple Alghosazi,5,11,440.0,16.774,14.891,0.2188,0.3125,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-AS3-SOLID,Fipple Alghosazi,6,12,466.164,15.832,15.832,0.2188,0.3125,back thumb,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-A3-J3,Fipple Alghosazi,1,2,246.942,24.045,2.945,0.1875,0.2500,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-A3-J3,Fipple Alghosazi,2,4,277.183,21.422,5.568,0.1875,0.2500,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-A3-J3,Fipple Alghosazi,3,7,329.628,18.014,8.976,0.1875,0.2500,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-A3-J3,Fipple Alghosazi,4,9,369.994,16.048,10.942,0.2188,0.3125,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-A3-J3,Fipple Alghosazi,5,11,415.305,14.298,12.693,0.2188,0.3125,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-A3-J3,Fipple Alghosazi,6,12,440.0,13.495,13.495,0.2188,0.3125,back thumb,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-B3-SOLID,Fipple Alghosazi,1,2,277.183,23.082,2.827,0.1875,0.2500,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-B3-SOLID,Fipple Alghosazi,2,4,311.127,20.564,5.345,0.1875,0.2500,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-B3-SOLID,Fipple Alghosazi,3,7,369.994,17.292,8.617,0.1875,0.2500,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-B3-SOLID,Fipple Alghosazi,4,9,415.305,15.406,10.503,0.2188,0.3125,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-B3-SOLID,Fipple Alghosazi,5,11,466.164,13.725,12.184,0.2188,0.3125,front,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging
+ALG-B3-SOLID,Fipple Alghosazi,6,12,493.883,12.955,12.955,0.2188,0.3125,back thumb,x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging

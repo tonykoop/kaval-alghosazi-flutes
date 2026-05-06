@@ -1,0 +1,6 @@
+source,url,observation,used_for
+Fujara Flutes Kaval page,https://www.fujaraflutes.com/moldavian-kaval-flutes,"Fipple kavals, 5-hole gypsy scale, 7-hole expanded version, optional collapsible joints, double kaval/kavalghoza drone option.","Member lengths, scale offsets, double-drone concept, two-piece option."
+Fujara Flutes Alghosazi page,https://www.fujaraflutes.com/alghosazi,"Fipple adaptation of Anasazi-style flute, top hole moved to back thumb, examples in A#, A, B, and double drone form.","Alghosazi family, thumb-hole assumption, length precedents, two/three-piece options."
+Local fujara CAD and equations,../fujara/design-table/fujara_equations.md,"Fujara-style flue plug, 0.033 to 0.040 in windway height, 0.005 to 0.015 in splitting-edge KPI, removable wax-sealed plug.",End-mouth to flue to true-sound-window head architecture.
+Local flutes and drone-flutes packets,../flutes/README.md; ../drone-flutes/design.md,"Open-pipe formulas, Tony's shop workflow, split blank CNC plus lathe method.","Acoustic formulas, validation loop, CNC/lathe workflow."
+Flutopedia Anasazi tuning note,https://www.flutopedia.com/naf_tunings.htm,Anasazi-tuned six-hole instruments are commonly modeled with a diatonic-major-without-fourth primary sequence.,"Starter Alghosazi offsets 0,2,4,7,9,11,12 pending measured validation."

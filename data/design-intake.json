@@ -1,0 +1,16 @@
+{
+  "instrument_id": "KAV-ALG-FAM-001",
+  "family": "open-pipe duct/fipple flute",
+  "instrument_type": "Kaval and Alghosazi fipple flute family",
+  "variant_size": "5-hole kaval, 7-hole kaval, Alghosazi, double-drone options",
+  "key_scale": "Kaval gypsy mode and Anasazi-derived Alghosazi mode",
+  "target_fundamental_hz": "207.652-261.626 Hz family range",
+  "primary_material": "elder/locust/ash/maple/cherry/walnut",
+  "construction_pipeline": "cnc-lathe hybrid, split blank or deep bore, fujara-style fipple head",
+  "design_workbook": "Kaval-Alghosazi-Design.xlsx",
+  "design_sheet": "Family_Spec",
+  "master_workbook": "../Instrument Workshop Master v3.xlsx (not edited)",
+  "done_bar_repo": "fujara, flutes, drone-flutes, pistalka",
+  "notes": "Fuzzy user request converted to explicit family packet; unknowns remain in validation notes.",
+  "generated_on": "2026-05-06"
+}

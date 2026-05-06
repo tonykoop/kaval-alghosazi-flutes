@@ -1,0 +1,8 @@
+item,assembly,part,qty,spec,make_buy,est_cost_usd,source_status,drawing_ref,notes
+BOM-001,all,Primary body blank,1 per flute,"Straight-grain elder, locust, ash, maple, cherry, or walnut; length per family-spec plus 2 in trim",buy,25-90,spec only,drawings/*-body.svg,Avoid runout through tone holes and joint tenons.
+BOM-002,head,Removable fipple/flue plug,1 plus 2 test plugs,"Hard maple, pear, or dense straight-grain scrap; 0.033-0.045 in windway height trials",make,5,shop scrap ok,drawings/fipple-head-section.svg,Wax-sealed removable plug makes voicing iteration survivable.
+BOM-003,joint,Cork sheet or natural cork rings,1 strip per joint,"1/32 to 1/16 in cork, sanded to airtight slip fit",buy,8-15,verify before purchase,drawings/two-piece-joint.svg,Use only on removable joints; permanent split bodies use glue.
+BOM-004,joint,Brass or hardwood ferrule sleeve,optional,Thin brass tube or hardwood collar sized to body OD,buy/make,10-25,verify diameter,drawings/two-piece-joint.svg,Recommended for long A/A# bodies and double-flute assemblies.
+BOM-005,finish,Exterior finish,1,"Shellac, polymerized oil, or oil/wax; keep windway and bore lightly sealed only after tuning",buy,10-30,shop stock likely,assembly-manual.md,No heavy finish on splitting edge.
+BOM-006,fixture,V-block and drilling template stock,1 set,"MDF/plywood V-block, laser-cut paper/acrylic hole templates, 1/4 in dowel pins",make,10-20,shop stock likely,cnc/setup-sheet.md,Template holes should be undersized pilots.
+BOM-007,validation,Tuning/measurement kit,1,"Chromatic tuner, thermometer/hygrometer, calipers, small round files, recording device",use shop kit,0-60,existing kit likely,validation.csv,Record temperature with every tuning pass.

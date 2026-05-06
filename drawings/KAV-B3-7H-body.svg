@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 560" width="880" height="560" font-family="Helvetica, Arial, sans-serif">
+<rect x="0" y="0" width="880" height="560" fill="white" stroke="black" stroke-width="1"/>
+<text x="64" y="48" font-size="14" font-weight="bold">Kaval + Alghosazi Fipple Flutes - KAV-B3-7H</text>
+<text x="64" y="68" font-size="11" fill="#444">Front view (top) and section A-A (bottom)</text>
+<rect x="64" y="94" width="524" height="38.208333333333336" fill="#fafafa" stroke="black" stroke-width="1.5"/>
+<line x1="64" y1="113.10416666666667" x2="588" y2="113.10416666666667" stroke="#888" stroke-width="0.6" stroke-dasharray="6 3 1 3"/>
+<circle cx="64" cy="150.20833333333334" r="9" fill="white" stroke="black" stroke-width="1.5"/>
+<text x="64" y="154.20833333333334" font-size="11" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="588" cy="150.20833333333334" r="9" fill="white" stroke="black" stroke-width="1.5"/>
+<text x="588" y="154.20833333333334" font-size="11" text-anchor="middle" font-weight="bold">B</text>
+<line x1="64" y1="132.20833333333334" x2="64" y2="184.20833333333334" stroke="black" stroke-width="0.5" stroke-dasharray="3 2"/>
+<line x1="588" y1="132.20833333333334" x2="588" y2="184.20833333333334" stroke="black" stroke-width="0.5" stroke-dasharray="3 2"/>
+<line x1="64" y1="176.20833333333334" x2="588" y2="176.20833333333334" stroke="black" stroke-width="1"/>
+<polygon points="64,176.20833333333334 68,173.20833333333334 68,179.20833333333334" fill="black"/>
+<polygon points="588,176.20833333333334 584,173.20833333333334 584,179.20833333333334" fill="black"/>
+<text x="326.0" y="172.20833333333334" font-size="9" text-anchor="middle">12.000"</text>
+<defs><pattern id="hatch_A_A" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#bbb" stroke-width="0.6"/></pattern></defs>
+<rect x="64" y="262.20833333333337" width="524" height="68.775" fill="white" stroke="black" stroke-width="1.5"/>
+<rect x="64" y="277.49166666666673" width="524" height="38.208333333333336" fill="url(#hatch_A_A)" stroke="black" stroke-width="1"/>
+<text x="64" y="256.20833333333337" font-size="10" fill="#444">SECTION A-A - bore ID hatched</text>
+<line x1="26" y1="277.49166666666673" x2="26" y2="315.70000000000005" stroke="black" stroke-width="1"/><line x1="44" y1="277.49166666666673" x2="30" y2="277.49166666666673" stroke="black" stroke-width="1"/><line x1="44" y1="315.70000000000005" x2="30" y2="315.70000000000005" stroke="black" stroke-width="1"/><text x="36" y="300.5958333333334" font-size="11">⌀0.875"</text>
+<rect x="636" y="24" width="220" height="200" fill="white" stroke="black" stroke-width="1"/>
+<line x1="636" y1="24.0" x2="856" y2="24.0" stroke="black" stroke-width="0.5"/>
+<line x1="713.0" y1="24.0" x2="713.0" y2="49.0" stroke="black" stroke-width="0.5"/>
+<text x="640" y="41.5" font-size="9" fill="#444">INSTRUMENT</text>
+<text x="719.2" y="41.5" font-size="10" fill="black">Kaval + Alghosazi Fipple Flutes</text>
+<line x1="636" y1="49.0" x2="856" y2="49.0" stroke="black" stroke-width="0.5"/>
+<line x1="713.0" y1="49.0" x2="713.0" y2="74.0" stroke="black" stroke-width="0.5"/>
+<text x="640" y="66.5" font-size="9" fill="#444">MEMBER</text>
+<text x="719.2" y="66.5" font-size="10" fill="black">KAV-B3-7H</text>
+<line x1="636" y1="74.0" x2="856" y2="74.0" stroke="black" stroke-width="0.5"/>
+<line x1="713.0" y1="74.0" x2="713.0" y2="99.0" stroke="black" stroke-width="0.5"/>
+<text x="640" y="91.5" font-size="9" fill="#444">SCALE</text>
+<text x="719.2" y="91.5" font-size="10" fill="black">1:1 (illustrative)</text>
+<line x1="636" y1="99.0" x2="856" y2="99.0" stroke="black" stroke-width="0.5"/>
+<line x1="713.0" y1="99.0" x2="713.0" y2="124.0" stroke="black" stroke-width="0.5"/>
+<text x="640" y="116.5" font-size="9" fill="#444">UNITS</text>
+<text x="719.2" y="116.5" font-size="10" fill="black">inches</text>
+<line x1="636" y1="124.0" x2="856" y2="124.0" stroke="black" stroke-width="0.5"/>
+<line x1="713.0" y1="124.0" x2="713.0" y2="149.0" stroke="black" stroke-width="0.5"/>
+<text x="640" y="141.5" font-size="9" fill="#444">REV</text>
+<text x="719.2" y="141.5" font-size="10" fill="black">v4</text>
+<line x1="636" y1="149.0" x2="856" y2="149.0" stroke="black" stroke-width="0.5"/>
+<line x1="713.0" y1="149.0" x2="713.0" y2="174.0" stroke="black" stroke-width="0.5"/>
+<text x="640" y="166.5" font-size="9" fill="#444">DATE</text>
+<text x="719.2" y="166.5" font-size="10" fill="black">2026-05-05</text>
+<line x1="636" y1="174.0" x2="856" y2="174.0" stroke="black" stroke-width="0.5"/>
+<line x1="713.0" y1="174.0" x2="713.0" y2="199.0" stroke="black" stroke-width="0.5"/>
+<text x="640" y="191.5" font-size="9" fill="#444">AUTHOR</text>
+<text x="719.2" y="191.5" font-size="10" fill="black">Tony Koop</text>
+<line x1="636" y1="199.0" x2="856" y2="199.0" stroke="black" stroke-width="0.5"/>
+<line x1="713.0" y1="199.0" x2="713.0" y2="224.0" stroke="black" stroke-width="0.5"/>
+<text x="640" y="216.5" font-size="9" fill="#444">SHEET</text>
+<text x="719.2" y="216.5" font-size="10" fill="black">1 / 1</text>
+<text x="24" y="530" font-size="9" fill="#666">Tolerances: ±0.005" unless noted. Hole position datum: measured from FOOT (datum A). Material/finish: see design.md.</text>
+</svg>

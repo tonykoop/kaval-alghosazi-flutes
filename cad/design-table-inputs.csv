@@ -1,0 +1,12 @@
+member_id,target_note,total_length_in,bore_id_in,body_od_in,top_to_window_in,hole_count,construction
+KAV-GS3-5H,G#3,31.102,0.8750,1.3750,1.600,5,solid or split blank; optional two-piece joint
+KAV-A3-5H,A3,29.134,0.8750,1.3750,1.600,5,two-piece optional hand-cut joint
+KAV-B3-5H,B3,26.378,0.8125,1.3125,1.500,5,solid split blank
+KAV-C4-5H,C4,24.409,0.7500,1.2500,1.450,5,solid split blank
+KAV-A3-7H,A3,35.433,0.8750,1.4000,1.650,7,solid split blank
+KAV-AS3-7H,A#3,33.465,0.8750,1.4000,1.650,7,two-piece optional hand-cut joint
+KAV-B3-7H,B3,27.165,0.8125,1.3125,1.500,7,solid split blank
+ALG-AS3-J2,A#3,32.283,0.8750,1.3750,1.800,6,two-piece hand-cut joint
+ALG-AS3-SOLID,A#3,33.465,0.8750,1.3750,1.800,6,solid split blank
+ALG-A3-J3,A3,28.740,0.8750,1.3750,1.750,6,three-piece hand-cut joint
+ALG-B3-SOLID,B3,27.559,0.8125,1.3125,1.650,6,solid split blank

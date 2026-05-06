@@ -1,0 +1,12 @@
+name,value_in,scope,notes
+g_speed_of_sound,13552,global,in/s at about 68 F
+g_a4_reference,440,global,Hz
+g_windway_height,0.038,head,start with removable plug shims 0.033-0.045
+g_windway_width,0.500,head,adjust per bore
+g_window_length,0.320,head,starter true sound window length
+g_window_width,0.500,head,about 55-65 percent of bore
+g_splitting_edge_offset,0.009,head,driven KPI target from fujara-style canary
+g_joint_tenon_length,1.250,joint,min engagement
+g_joint_cork_allowance,0.006,joint,sand to fit
+c_glue_gap,0.003,fit,permanent split blank glue line target
+c_wax_seal_fit,0.003,fit,removable flue plug wax seal target

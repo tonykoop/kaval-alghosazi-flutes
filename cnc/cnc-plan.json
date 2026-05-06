@@ -1,0 +1,133 @@
+{
+  "schema": "instrument-maker-v4.2-cnc-plan",
+  "generated_on": "2026-05-05",
+  "packet": ".",
+  "family": "woodwind",
+  "machine_note": "Maker Nexus/home shop; verify exact machine before CAM.",
+  "available_inputs": {
+    "design.md": true,
+    "family-spec.csv": true,
+    "bom.csv": true,
+    "cut-list.csv": true,
+    "sourcing.csv": true,
+    "drawing-brief.md": true,
+    "assembly-manual.md": true,
+    "validation.csv": true
+  },
+  "assumptions": [
+    "This is a pre-CAM operation graph, not verified G-code.",
+    "Verify feeds, speeds, work envelope, hold-down, and tool clearance at the machine.",
+    "Run air-cut or simulation before cutting instrument material."
+  ],
+  "operations": [
+    {
+      "op_id": "OP-010",
+      "name": "Review design package and mark datums",
+      "machine": "Bench",
+      "tool": "Calipers, square, marking knife, center punch",
+      "workholding": "Flat bench, drawing packet",
+      "datum": "Primary centerline / face A",
+      "inputs": [
+        "design.md",
+        "drawing-brief.md",
+        "cut-list.csv"
+      ],
+      "outputs": [
+        "shop-marked blank",
+        "datum checklist"
+      ],
+      "checks": [
+        "All stock dimensions exceed finished dimensions plus allowance",
+        "Units match drawings"
+      ],
+      "notes": ""
+    },
+    {
+      "op_id": "OP-110",
+      "name": "Prepare bore blank",
+      "machine": "Table saw / jointer / planer",
+      "tool": "Rip blade, jointer knives, planer",
+      "workholding": "Push blocks, featherboard",
+      "datum": "Face A and centerline",
+      "inputs": [
+        "cut-list.csv"
+      ],
+      "outputs": [
+        "square bore blank"
+      ],
+      "checks": [
+        "Blank straightness checked",
+        "Grain direction marked"
+      ],
+      "notes": ""
+    },
+    {
+      "op_id": "OP-210",
+      "name": "Create bore",
+      "machine": "Lathe or CNC router",
+      "tool": "Long brad-point bit, reamer, or ball/end mill for split blank",
+      "workholding": "Tailstock vise/carrier or flip jig with datum pins",
+      "datum": "Centerline A-B",
+      "inputs": [
+        "drawing-brief.md",
+        "family-spec.csv"
+      ],
+      "outputs": [
+        "bored or routed body half"
+      ],
+      "checks": [
+        "Bore wander checked on scrap",
+        "Bore diameter measured at both ends"
+      ],
+      "notes": "Use the deep-bore technique reference when the bore is long and straight."
+    },
+    {
+      "op_id": "OP-310",
+      "name": "Cut tone features",
+      "machine": "CNC router / drill press / laser template",
+      "tool": "1/8 in upcut spiral, brad-point bits, or printed drill guide",
+      "workholding": "V-block, centerline fence, registration pins",
+      "datum": "Embouchure end datum",
+      "inputs": [
+        "scale table",
+        "drawing-brief.md"
+      ],
+      "outputs": [
+        "tone holes / windows"
+      ],
+      "checks": [
+        "Hole spacing matches scale table",
+        "Undercut/tuning allowance left"
+      ],
+      "notes": ""
+    },
+    {
+      "op_id": "OP-900",
+      "name": "Validation and tuning pass",
+      "machine": "Bench",
+      "tool": "Chromatic tuner, calipers, scale, recording device",
+      "workholding": "Padded bench",
+      "datum": "Same acoustic datum used in design.md",
+      "inputs": [
+        "validation.csv",
+        "finished part"
+      ],
+      "outputs": [
+        "updated validation.csv",
+        "process photo"
+      ],
+      "checks": [
+        "Measured frequency recorded",
+        "Cents error computed",
+        "Tuning trim notes written"
+      ],
+      "notes": ""
+    }
+  ],
+  "release_checks": [
+    "Every operation has a datum and workholding method.",
+    "Every tool has a real machine available or an escalation note.",
+    "All tuning-critical features include trim allowance.",
+    "Validation.csv receives measured data after the first prototype."
+  ]
+}

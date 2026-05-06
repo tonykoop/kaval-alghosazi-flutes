@@ -1,0 +1,930 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Kaval + Alghosazi Fipple Flutes Capstone</title><style>
+body { font-family: Arial, sans-serif; color: #111; line-height: 1.35; max-width: 900px; margin: 32px auto; }
+h1 { font-size: 28px; border-bottom: 2px solid #222; padding-bottom: 6px; }
+h2 { font-size: 22px; margin-top: 28px; }
+h3 { font-size: 18px; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0 20px; font-size: 12px; }
+th, td { border: 1px solid #888; padding: 6px; vertical-align: top; }
+th { background: #e8eef8; }
+pre { white-space: pre-wrap; background: #f5f5f5; padding: 10px; border: 1px solid #ddd; }
+.page-break { page-break-before: always; break-before: page; }
+@media print { body { margin: 0.5in; max-width: none; } a { color: #111; } }
+</style></head><body>
+<h1>Kaval + Alghosazi Fipple Flutes Capstone Print Packet</h1>
+
+<p>Generated: 2026-05-05</p>
+<p>Packet folder: `/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes`</p>
+
+<h2>File Map</h2>
+
+<table>
+<tr><th>File</th><th>Purpose</th></tr>
+<tr><td>`design.md`</td><td>Project intent, catalog metadata, assumptions, and validation plan.</td></tr>
+<tr><td>`bom.csv`</td><td>Starter bill of materials with part categories, quantities, drawing refs, and notes.</td></tr>
+<tr><td>`sourcing.csv`</td><td>Supplier/search tracker with specs, price/date fields, lead time, substitutes, and risks.</td></tr>
+<tr><td>`cut-list.csv`</td><td>Rough/final stock sizes, material, grain/orientation, operations, yield, and offcuts.</td></tr>
+<tr><td>`drawing-brief.md`</td><td>Manufacturing drawing and technical product sketch brief.</td></tr>
+<tr><td>`assembly-manual.md`</td><td>Shop-facing sequence, tools, fixtures, safety, tuning, finishing, and maintenance notes.</td></tr>
+<tr><td>`validation.csv`</td><td>Target/measured values, tolerance, environment, result, and tuning/build action log.</td></tr>
+<tr><td>`supplier-rfq.md`</td><td>Supplier email/request-for-quote starter.</td></tr>
+<tr><td>`visual-bom-brief.md`</td><td>Art direction for an image-forward visual BOM.</td></tr>
+<tr><td>`wolfram-starter.wl`</td><td>Wolfram starter for physics, optimization, visualization, and validation.</td></tr>
+<tr><td>`README.md`</td><td>Project artifact.</td></tr>
+<tr><td>`alghosazi-hole-schedule.csv`</td><td>Project artifact.</td></tr>
+<tr><td>`double-drone-spec.csv`</td><td>Project artifact.</td></tr>
+<tr><td>`family-spec.csv`</td><td>Project artifact.</td></tr>
+<tr><td>`hole-schedule.csv`</td><td>Project artifact.</td></tr>
+<tr><td>`kaval-hole-schedule.csv`</td><td>Project artifact.</td></tr>
+<tr><td>`photo-shotlist.md`</td><td>Project artifact.</td></tr>
+<tr><td>`risks.md`</td><td>Project artifact.</td></tr>
+<tr><td>`sources.md`</td><td>Project artifact.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>design.md</h2>
+
+<p>Project intent, catalog metadata, assumptions, and validation plan.</p>
+
+<h1>Kaval + Alghosazi Fipple Flutes</h1>
+
+<p>**Packet ID:** KAV-ALG-FAM-001  </p>
+<p>**Family:** open-pipe woodwind / duct-fipple flute  </p>
+<p>**Pipeline:** cnc-lathe hybrid: split blank or deep bore, fipple head, lathe rounding, optional two-piece joint  </p>
+<p>**Date:** 2026-05-06  </p>
+<p>**Done-bar references:** `fujara`, `flutes`, `drone-flutes`, `pistalka`, `transverse-flute`</p>
+
+<h2>Project Intent</h2>
+
+<p>Design a buildable family of long fipple kavals and Alghosazi flutes that feel close to the Fujara Flutes references while using Tony&#x27;s existing fujara/flute workshop logic: parametric dimensions, a controllable fipple sound-window head, split-blank CNC or deep-bore construction, validation tables, and documented tuning loops.</p>
+
+<p>The first physical goal is not a perfect production run. It is a controlled prototype ladder: prove the fipple head, build one A3 5-hole kaval, build one A#3 Alghosazi with a thumb hole, then decide whether the two-piece and double-drone versions deserve full CAD.</p>
+
+<h2>Source And Scope</h2>
+
+<p>External reference pages checked:</p>
+
+<ul>
+<li>Fujara Flutes Kaval page: 5-hole fipple kavals, 7-hole expanded kavals, lengths from about 62-90 cm, and double Kaval/Kavalghoza drone concept.</li>
+<li>Fujara Flutes Alghosazi page: fipple adaptation of Anasazi-style flute, top hole moved to the back as a thumb hole, lengths from about 70-85 cm, and a double-drone option.</li>
+<li>Flutopedia Anasazi tuning notes: used only to justify the Alghosazi starter offset set as an Anasazi-derived primary sequence.</li>
+</ul>
+
+<p>Local source artifacts inspected:</p>
+
+<ul>
+<li>`fujara/design-table/fujara_equations.md` and SolidWorks dimension extracts for fipple/flue plug geometry.</li>
+<li>`drone-flutes/design.md` and `flutes/skills/parametric-design-table.md` for open-pipe, shop, and validation workflow.</li>
+<li>`pistalka/docs/build-packet/design.md` for a compact fipple-flute build sequence.</li>
+</ul>
+
+<h2>Governing Model</h2>
+
+<p>These flutes are modeled as **open-open cylindrical fipple flutes** with a non-NAF fujara-style sound-window end correction.</p>
+
+<pre><code>
+f = c / (2 * L_eff)
+c = 13552 in/s at about 68 F
+L_eff = physical_labium_to_foot + foot_end_correction + sound_window_correction
+foot_end_correction ~= 0.6 * bore_radius
+sound_window_correction = measured prototype value, not Tony&#x27;s NAF K2 table
+</code></pre>
+
+<p>For first-pass hole placement, the packet uses a proportional open-pipe layout:</p>
+
+<pre><code>
+x_from_labium = labium_to_foot * 2^(-semitone_offset / 12)
+x_from_foot = labium_to_foot - x_from_labium
+</code></pre>
+
+<p>The hole schedule is intentionally a **starter drill schedule**. The builder drills undersized, tunes the root by trimming the foot, then opens each hole upward by careful reaming/undercutting. If a hole goes sharp, the recovery is wax test, bushing, or a rebuilt body.</p>
+
+<p>`family-spec.csv` includes `estimated_sound_window_correction_in`. Positive values mean the fipple/window system or added acoustic path must make the instrument behave longer than the visible labium-to-foot length. Negative values mean the source-observed body length is overlong for the nominal root under a simple open-pipe model; treat those as overlength blanks to trim or as evidence that the commercial key naming may not equal the all-closed root.</p>
+
+<h2>Scale Plans</h2>
+
+<h3>5-Hole Fipple Kaval</h3>
+
+<p>The 5-hole kaval follows the published C-reference pitch set:</p>
+
+<pre><code>
+0, +2, +3, +6, +7, +8 semitones
+Example in C: C D D# F# G G#
+</code></pre>
+
+<h3>7-Hole Fipple Kaval</h3>
+
+<p>The expanded kaval adds the two half-step options described by the reference page:</p>
+
+<pre><code>
+0, +2, +3, +4, +6, +7, +8, +9 semitones
+Example in C: C D D# E F# G G# A
+</code></pre>
+
+<h3>Alghosazi</h3>
+
+<p>The Alghosazi starter scale uses an Anasazi-derived primary sequence. The top hole is placed on the back as a thumb hole, matching the design note from the reference page.</p>
+
+<pre><code>
+0, +2, +4, +7, +9, +11, +12 semitones
+Example in A#: A# C D F G A A#
+</code></pre>
+
+<p>This is marked as a musical-design assumption. If Tony wants a different Alghosazi mode after listening to examples, change the offsets in `Kaval-Alghosazi-Design.xlsx` and regenerate `hole-schedule.csv`.</p>
+
+<h2>Fujara-Style Fipple Head</h2>
+
+<p>The requested head architecture is:</p>
+
+<pre><code>
+mouth at end -&gt; rectangular inlet -&gt; internal windway/flue -&gt; side true sound window -&gt; splitting edge -&gt; main bore
+</code></pre>
+
+<p>Starter dimensions:</p>
+
+<table>
+<tr><th>Feature</th><th>Kaval Starter</th><th>Alghosazi Starter</th><th>Notes</th></tr>
+<tr><td>Top end to true window datum</td><td>1.45-1.65 in</td><td>1.65-1.80 in</td><td>Adjust for comfort and joint location.</td></tr>
+<tr><td>Windway height</td><td>0.033-0.045 in</td><td>0.035-0.048 in</td><td>Start with removable flue plug trials.</td></tr>
+<tr><td>Windway width</td><td>0.45-0.55 in</td><td>0.45-0.58 in</td><td>About 55-65 percent of bore.</td></tr>
+<tr><td>Window length</td><td>0.25-0.38 in</td><td>0.28-0.42 in</td><td>Widen/lengthen only after tone test.</td></tr>
+<tr><td>Splitting edge offset KPI</td><td>0.005-0.015 in</td><td>0.005-0.015 in</td><td>Borrowed from Tony&#x27;s fujara canary, not a final law.</td></tr>
+<tr><td>Plug fit</td><td>wax-sealed slip</td><td>wax-sealed slip</td><td>Removable until final voicing.</td></tr>
+</table>
+
+<h2>Two-Piece And Double Options</h2>
+
+<p>The two-piece option is a **shop convenience and tuning risk**, not a decorative afterthought. Use it only after a solid prototype speaks well.</p>
+
+<ul>
+<li>Tenon engagement: 1.25 in minimum.</li>
+<li>Cork compression: fit by sanding; no forced assembly.</li>
+<li>Joint location: avoid placing the joint within 0.75 in of a tone hole.</li>
+<li>Bore step: less than 0.005 in at the joint after final sanding.</li>
+<li>Ferrule: recommended for A/A# bodies and double-flute assemblies.</li>
+</ul>
+
+<p>Double-drone versions are documented in `double-drone-spec.csv` and `drawings/double-drone-layout.svg`. Each side gets its own windway so the melody flute can be played alone and the drone can be tuned independently.</p>
+
+<h2>Family Table</h2>
+
+<p>See `family-spec.csv` for the source of truth. The core starter members are:</p>
+
+<table>
+<tr><th>Member</th><th>Role</th></tr>
+<tr><td>`KAV-A3-5H`</td><td>First kaval prototype.</td></tr>
+<tr><td>`KAV-AS3-7H`</td><td>Two-piece expanded kaval prototype.</td></tr>
+<tr><td>`ALG-AS3-J2`</td><td>First Alghosazi prototype.</td></tr>
+<tr><td>`ALG-A3-J3`</td><td>Three-piece Alghosazi joint stress test.</td></tr>
+</table>
+
+<h2>Manufacturing Path</h2>
+
+<p>Preferred path for the first two prototypes:</p>
+
+<p>1. Make a removable fipple-head test tile from scrap.</p>
+<p>2. Build a split-blank body so the bore, windway, and window are visible and correctable.</p>
+<p>3. Glue and turn only after the fipple speaks.</p>
+<p>4. Drill holes undersized from a laser/CNC template or V-block setup.</p>
+<p>5. Tune root first, then holes from foot upward.</p>
+<p>6. Record measurements in `validation.csv` and update the next prototype.</p>
+
+<p>Deep-bore drilling is allowed for later solid-body builds. Use the skill reference `headstock-driven-deep-bore-drilling.md` before attempting a long solid blank.</p>
+
+<h2>Assumptions</h2>
+
+<ul>
+<li>A4 = 440 Hz.</li>
+<li>68 F speed-of-sound baseline.</li>
+<li>Website lengths are used as precedent dimensions, not guaranteed acoustic formulas.</li>
+<li>Alghosazi tuning is a starter interpretation based on contemporary Anasazi-tuned six-hole practice.</li>
+<li>Tone hole positions ignore final hole-diameter perturbation until measured prototype data exists.</li>
+<li>The fipple head is Tony&#x27;s derived design and must be validated by physical tests.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>bom.csv</h2>
+
+<p>Starter bill of materials with part categories, quantities, drawing refs, and notes.</p>
+
+<table>
+<tr><th>item</th><th>assembly</th><th>part</th><th>qty</th><th>spec</th><th>make_buy</th><th>est_cost_usd</th><th>source_status</th><th>drawing_ref</th><th>notes</th></tr>
+<tr><td>BOM-001</td><td>all</td><td>Primary body blank</td><td>1 per flute</td><td>Straight-grain elder, locust, ash, maple, cherry, or walnut; length per family-spec plus 2 in trim</td><td>buy</td><td>25-90</td><td>spec only</td><td>drawings/*-body.svg</td><td>Avoid runout through tone holes and joint tenons.</td></tr>
+<tr><td>BOM-002</td><td>head</td><td>Removable fipple/flue plug</td><td>1 plus 2 test plugs</td><td>Hard maple, pear, or dense straight-grain scrap; 0.033-0.045 in windway height trials</td><td>make</td><td>5</td><td>shop scrap ok</td><td>drawings/fipple-head-section.svg</td><td>Wax-sealed removable plug makes voicing iteration survivable.</td></tr>
+<tr><td>BOM-003</td><td>joint</td><td>Cork sheet or natural cork rings</td><td>1 strip per joint</td><td>1/32 to 1/16 in cork, sanded to airtight slip fit</td><td>buy</td><td>8-15</td><td>verify before purchase</td><td>drawings/two-piece-joint.svg</td><td>Use only on removable joints; permanent split bodies use glue.</td></tr>
+<tr><td>BOM-004</td><td>joint</td><td>Brass or hardwood ferrule sleeve</td><td>optional</td><td>Thin brass tube or hardwood collar sized to body OD</td><td>buy/make</td><td>10-25</td><td>verify diameter</td><td>drawings/two-piece-joint.svg</td><td>Recommended for long A/A# bodies and double-flute assemblies.</td></tr>
+<tr><td>BOM-005</td><td>finish</td><td>Exterior finish</td><td>1</td><td>Shellac, polymerized oil, or oil/wax; keep windway and bore lightly sealed only after tuning</td><td>buy</td><td>10-30</td><td>shop stock likely</td><td>assembly-manual.md</td><td>No heavy finish on splitting edge.</td></tr>
+<tr><td>BOM-006</td><td>fixture</td><td>V-block and drilling template stock</td><td>1 set</td><td>MDF/plywood V-block, laser-cut paper/acrylic hole templates, 1/4 in dowel pins</td><td>make</td><td>10-20</td><td>shop stock likely</td><td>cnc/setup-sheet.md</td><td>Template holes should be undersized pilots.</td></tr>
+<tr><td>BOM-007</td><td>validation</td><td>Tuning/measurement kit</td><td>1</td><td>Chromatic tuner, thermometer/hygrometer, calipers, small round files, recording device</td><td>use shop kit</td><td>0-60</td><td>existing kit likely</td><td>validation.csv</td><td>Record temperature with every tuning pass.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>sourcing.csv</h2>
+
+<p>Supplier/search tracker with specs, price/date fields, lead time, substitutes, and risks.</p>
+
+<table>
+<tr><th>component</th><th>required_spec</th><th>search_terms</th><th>candidate_supplier</th><th>price_each</th><th>date_checked</th><th>lead_time</th><th>substitutes</th><th>risk</th></tr>
+<tr><td>straight-grain hardwood blanks</td><td>1.25-1.50 in square or round, 28-38 in long, stable and dry</td><td>elder wood blank, locust spindle blank, ash turning blank, maple turning blank</td><td>local hardwood dealer / Woodcraft / Rockler / Global Wood Source</td><td>TBD</td><td>TBD</td><td>TBD</td><td>maple/cherry/walnut for prototype</td><td>Species and grain affect cracking and tone; verify straight grain before purchase.</td></tr>
+<tr><td>cork joint material</td><td>thin sheet or rings, sandable, airtight</td><td>woodwind tenon cork sheet 1/32 1/16</td><td>music repair supplier / Amazon / McMaster</td><td>TBD</td><td>TBD</td><td>TBD</td><td>waxed hemp thread for tests</td><td>Loose joint leaks; tight joint cracks socket.</td></tr>
+<tr><td>brass ferrule sleeve</td><td>ID/OD matched to selected body, thin wall</td><td>brass tube 1.25 inch 1.375 inch thin wall</td><td>K&amp;S, McMaster, OnlineMetals</td><td>TBD</td><td>TBD</td><td>TBD</td><td>hardwood collar turned on lathe</td><td>Metal sleeve changes exterior feel and may buzz if poorly fitted.</td></tr>
+<tr><td>small brad point drill bits and reamers</td><td>1/8 to 3/8 in, sharp, clean entry</td><td>brad point drill bit set small reamer</td><td>Woodcraft / Rockler / McMaster</td><td>TBD</td><td>TBD</td><td>TBD</td><td>number drill bits plus tapered reamer</td><td>Tearout around holes shifts tuning and looks sloppy.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>cut-list.csv</h2>
+
+<p>Rough/final stock sizes, material, grain/orientation, operations, yield, and offcuts.</p>
+
+<table>
+<tr><th>member_id</th><th>blank_part</th><th>material</th><th>qty</th><th>rough_size_in</th><th>final_size_in</th><th>grain_orientation</th><th>operation</th><th>yield_notes</th></tr>
+<tr><td>KAV-GS3-5H</td><td>main body blank</td><td>Locust or elder</td><td>1</td><td>1.625 x 1.625 x 33.102</td><td>OD 1.375, bore 0.875, length 31.102</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>KAV-GS3-5H</td><td>joint tenon/socket allowance</td><td>Locust or elder plus cork/ferrule</td><td>1</td><td>extra 2.5 in distributed around joint</td><td>1.250 in tenon engagement, 0.003-0.006 in cork-adjusted compression</td><td>same as body</td><td>turn tenon/socket after bore alignment is proven</td><td>Cut joint after body is acoustically proven on a sacrificial overlength blank.</td></tr>
+<tr><td>KAV-A3-5H</td><td>main body blank</td><td>Elder</td><td>1</td><td>1.625 x 1.625 x 31.134</td><td>OD 1.375, bore 0.875, length 29.134</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>KAV-A3-5H</td><td>joint tenon/socket allowance</td><td>Elder plus cork/ferrule</td><td>1</td><td>extra 2.5 in distributed around joint</td><td>1.250 in tenon engagement, 0.003-0.006 in cork-adjusted compression</td><td>same as body</td><td>turn tenon/socket after bore alignment is proven</td><td>Cut joint after body is acoustically proven on a sacrificial overlength blank.</td></tr>
+<tr><td>KAV-B3-5H</td><td>main body blank</td><td>Elder</td><td>1</td><td>1.562 x 1.562 x 28.378</td><td>OD 1.312, bore 0.812, length 26.378</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>KAV-C4-5H</td><td>main body blank</td><td>Elder, maple, or cherry</td><td>1</td><td>1.500 x 1.500 x 26.409</td><td>OD 1.250, bore 0.750, length 24.409</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>KAV-A3-7H</td><td>main body blank</td><td>Elder</td><td>1</td><td>1.650 x 1.650 x 37.433</td><td>OD 1.400, bore 0.875, length 35.433</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>main body blank</td><td>Dogwood or elder</td><td>1</td><td>1.650 x 1.650 x 35.465</td><td>OD 1.400, bore 0.875, length 33.465</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>joint tenon/socket allowance</td><td>Dogwood or elder plus cork/ferrule</td><td>1</td><td>extra 2.5 in distributed around joint</td><td>1.250 in tenon engagement, 0.003-0.006 in cork-adjusted compression</td><td>same as body</td><td>turn tenon/socket after bore alignment is proven</td><td>Cut joint after body is acoustically proven on a sacrificial overlength blank.</td></tr>
+<tr><td>KAV-B3-7H</td><td>main body blank</td><td>Elder</td><td>1</td><td>1.562 x 1.562 x 29.165</td><td>OD 1.312, bore 0.812, length 27.165</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>main body blank</td><td>Ash</td><td>1</td><td>1.625 x 1.625 x 34.283</td><td>OD 1.375, bore 0.875, length 32.283</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>joint tenon/socket allowance</td><td>Ash plus cork/ferrule</td><td>1</td><td>extra 2.5 in distributed around joint</td><td>1.250 in tenon engagement, 0.003-0.006 in cork-adjusted compression</td><td>same as body</td><td>turn tenon/socket after bore alignment is proven</td><td>Cut joint after body is acoustically proven on a sacrificial overlength blank.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>main body blank</td><td>Locust</td><td>1</td><td>1.625 x 1.625 x 35.465</td><td>OD 1.375, bore 0.875, length 33.465</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>ALG-A3-J3</td><td>main body blank</td><td>Oak</td><td>1</td><td>1.625 x 1.625 x 30.740</td><td>OD 1.375, bore 0.875, length 28.740</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>ALG-A3-J3</td><td>joint tenon/socket allowance</td><td>Oak plus cork/ferrule</td><td>1</td><td>extra 2.5 in distributed around joint</td><td>1.250 in tenon engagement, 0.003-0.006 in cork-adjusted compression</td><td>same as body</td><td>turn tenon/socket after bore alignment is proven</td><td>Cut joint after body is acoustically proven on a sacrificial overlength blank.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>main body blank</td><td>Elder or maple</td><td>1</td><td>1.562 x 1.562 x 29.559</td><td>OD 1.312, bore 0.812, length 27.559</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>drawing-brief.md</h2>
+
+<p>Manufacturing drawing and technical product sketch brief.</p>
+
+<h1>Drawing Brief</h1>
+
+<h2>Required Views</h2>
+
+<ul>
+<li>Family overview: each member as a scaled open-pipe body with bore ID and total length.</li>
+<li>Hole layout: kaval and Alghosazi separate, measured from labium and from foot.</li>
+<li>Fipple head section: end mouth inlet, windway, flue plug, true sound window, splitting edge, bore.</li>
+<li>Two-piece joint section: tenon, socket, cork wrap, ferrule/collar, bore continuity.</li>
+<li>Double-drone layout: two bores, independent windways, melody side, drone side, thumb vent.</li>
+</ul>
+
+<h2>Datums</h2>
+
+<ul>
+<li>Datum A: labium/splitting-edge plane.</li>
+<li>Datum B: tuned foot end.</li>
+<li>Datum C: bore centerline.</li>
+<li>Datum D: back thumb-hole centerline for Alghosazi.</li>
+</ul>
+
+<h2>Tolerances</h2>
+
+<ul>
+<li>Bore ID: +/-0.005 in after reaming/lapping.</li>
+<li>Hole center: +/-0.020 in before tuning; final pitch matters more than nominal center.</li>
+<li>Windway height: +/-0.002 in once a plug speaks.</li>
+<li>Joint bore step: less than 0.005 in.</li>
+<li>Noncritical exterior: +/-0.030 in.</li>
+</ul>
+
+<h2>Drawing Outputs</h2>
+
+<p>Generated SVGs live in `drawings/`. Build-critical dimensions come from `Kaval-Alghosazi-Design.xlsx`, `family-spec.csv`, and `hole-schedule.csv`, not from raster images.</p>
+
+<div class="page-break"></div>
+
+<h2>assembly-manual.md</h2>
+
+<p>Shop-facing sequence, tools, fixtures, safety, tuning, finishing, and maintenance notes.</p>
+
+<h1>Assembly Manual</h1>
+
+<h2>Safety And Setup</h2>
+
+<ul>
+<li>Wear eye and lung protection when drilling, routing, sanding, or turning.</li>
+<li>Do not route a long round blank without a stable V-block or split-blank fixture.</li>
+<li>Keep the splitting edge protected until final voicing.</li>
+<li>Mark the labium datum, foot datum, bore centerline, and back thumb-hole line before any irreversible cut.</li>
+</ul>
+
+<h2>Prototype Ladder</h2>
+
+<h3>P0: Fipple Head Tile</h3>
+
+<p>1. Cut a 4 in scrap block with the selected bore diameter or a half-bore test channel.</p>
+<p>2. Cut the end mouth inlet.</p>
+<p>3. Fit a removable flue plug with 0.033, 0.038, and 0.045 in shim trials.</p>
+<p>4. Cut a side true sound window and splitting edge.</p>
+<p>5. Blow through the end inlet and record which plug/window combination speaks cleanly.</p>
+<p>6. Do not build a full flute until this tile produces stable tone.</p>
+
+<h3>P1: First Kaval Body</h3>
+
+<p>1. Select `KAV-A3-5H`.</p>
+<p>2. Mill the blank overlength by at least 2 in.</p>
+<p>3. Split the blank, route the bore halves and registration pin holes, or deep-bore the solid blank after proving setup on scrap.</p>
+<p>4. Create the fipple head and removable plug.</p>
+<p>5. Prove the root tone with no finger holes.</p>
+<p>6. Trim the foot to bring the all-closed root toward A3.</p>
+<p>7. Transfer hole positions from `kaval-hole-schedule.csv`.</p>
+<p>8. Drill each hole undersized.</p>
+<p>9. Tune holes from the foot upward by reaming slowly.</p>
+<p>10. Record every before/after pitch in `validation.csv`.</p>
+
+<h3>P1: First Alghosazi Body</h3>
+
+<p>1. Select `ALG-AS3-J2`.</p>
+<p>2. Build as a solid body first if joint risk feels high; otherwise cut the two-piece joint after the bore is proven.</p>
+<p>3. Mark the rear thumb-hole line before drilling.</p>
+<p>4. Drill the thumb hole undersized and validate reach with the actual player grip.</p>
+<p>5. Tune the primary sequence and record whether the scale feels musically right.</p>
+
+<h3>P2: Jointed Version</h3>
+
+<p>1. Cut the body overlength and prove tone before final jointing.</p>
+<p>2. Locate the joint away from holes and away from the fipple head.</p>
+<p>3. Turn tenon and socket with a 1.25 in engagement target.</p>
+<p>4. Add cork or waxed thread until the joint seals without force.</p>
+<p>5. Check bore step with a dowel, light, and feeler test.</p>
+<p>6. Re-test root and all holes after the joint is fitted.</p>
+
+<h3>P3: Double Drone</h3>
+
+<p>1. Build melody and drone tubes separately.</p>
+<p>2. Tune the melody side alone.</p>
+<p>3. Tune the drone side alone, including rear thumb vent if used.</p>
+<p>4. Join the bodies temporarily with clamps or bands before permanent collars.</p>
+<p>5. Test pressure sharing with both windways.</p>
+<p>6. Only then commit to a permanent double-body fixture or decorative binding.</p>
+
+<h2>Finishing</h2>
+
+<ul>
+<li>Finish exterior after tuning.</li>
+<li>Keep heavy oil, shellac, and wax out of the windway and splitting edge.</li>
+<li>Seal bore lightly only after final measurements.</li>
+<li>Recheck pitch after finish cure.</li>
+</ul>
+
+<h2>Maintenance</h2>
+
+<ul>
+<li>Let the bore dry after playing.</li>
+<li>Remove the fipple plug only if the design uses a wax-sealed removable plug.</li>
+<li>Do not store jointed bodies assembled under high humidity swings.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>validation.csv</h2>
+
+<p>Target/measured values, tolerance, environment, result, and tuning/build action log.</p>
+
+<table>
+<tr><th>member_id</th><th>test_id</th><th>target</th><th>target_value</th><th>measured_value</th><th>tolerance</th><th>environment</th><th>pass_fail</th><th>action</th></tr>
+<tr><td>KAV-GS3-5H</td><td>VAL-ROOT</td><td>root G#3</td><td>207.652 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>KAV-GS3-5H</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>233.082 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-GS3-5H</td><td>VAL-H2</td><td>hole 2 offset +3 st</td><td>246.942 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-GS3-5H</td><td>VAL-H3</td><td>hole 3 offset +6 st</td><td>293.665 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-GS3-5H</td><td>VAL-H4</td><td>hole 4 offset +7 st</td><td>311.127 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-GS3-5H</td><td>VAL-H5</td><td>hole 5 offset +8 st</td><td>329.628 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-5H</td><td>VAL-ROOT</td><td>root A3</td><td>220.000 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>KAV-A3-5H</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>246.942 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-5H</td><td>VAL-H2</td><td>hole 2 offset +3 st</td><td>261.626 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-5H</td><td>VAL-H3</td><td>hole 3 offset +6 st</td><td>311.127 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-5H</td><td>VAL-H4</td><td>hole 4 offset +7 st</td><td>329.628 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-5H</td><td>VAL-H5</td><td>hole 5 offset +8 st</td><td>349.228 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-5H</td><td>VAL-ROOT</td><td>root B3</td><td>246.942 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>KAV-B3-5H</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>277.183 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-5H</td><td>VAL-H2</td><td>hole 2 offset +3 st</td><td>293.665 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-5H</td><td>VAL-H3</td><td>hole 3 offset +6 st</td><td>349.228 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-5H</td><td>VAL-H4</td><td>hole 4 offset +7 st</td><td>369.994 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-5H</td><td>VAL-H5</td><td>hole 5 offset +8 st</td><td>391.995 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-C4-5H</td><td>VAL-ROOT</td><td>root C4</td><td>261.626 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>KAV-C4-5H</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>293.665 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-C4-5H</td><td>VAL-H2</td><td>hole 2 offset +3 st</td><td>311.127 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-C4-5H</td><td>VAL-H3</td><td>hole 3 offset +6 st</td><td>369.994 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-C4-5H</td><td>VAL-H4</td><td>hole 4 offset +7 st</td><td>391.995 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-C4-5H</td><td>VAL-H5</td><td>hole 5 offset +8 st</td><td>415.305 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-ROOT</td><td>root A3</td><td>220.000 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>246.942 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-H2</td><td>hole 2 offset +3 st</td><td>261.626 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-H3</td><td>hole 3 offset +4 st</td><td>277.183 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-H4</td><td>hole 4 offset +6 st</td><td>311.127 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-H5</td><td>hole 5 offset +7 st</td><td>329.628 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-H6</td><td>hole 6 offset +8 st</td><td>349.228 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-H7</td><td>hole 7 offset +9 st</td><td>369.994 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-ROOT</td><td>root A#3</td><td>233.082 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>261.626 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-H2</td><td>hole 2 offset +3 st</td><td>277.183 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-H3</td><td>hole 3 offset +4 st</td><td>293.665 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-H4</td><td>hole 4 offset +6 st</td><td>329.628 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-H5</td><td>hole 5 offset +7 st</td><td>349.228 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-H6</td><td>hole 6 offset +8 st</td><td>369.994 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-H7</td><td>hole 7 offset +9 st</td><td>391.995 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-ROOT</td><td>root B3</td><td>246.942 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>277.183 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-H2</td><td>hole 2 offset +3 st</td><td>293.665 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-H3</td><td>hole 3 offset +4 st</td><td>311.127 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-H4</td><td>hole 4 offset +6 st</td><td>349.228 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-H5</td><td>hole 5 offset +7 st</td><td>369.994 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-H6</td><td>hole 6 offset +8 st</td><td>391.995 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-H7</td><td>hole 7 offset +9 st</td><td>415.305 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>VAL-ROOT</td><td>root A#3</td><td>233.082 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>261.626 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>VAL-H2</td><td>hole 2 offset +4 st</td><td>293.665 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>VAL-H3</td><td>hole 3 offset +7 st</td><td>349.228 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>VAL-H4</td><td>hole 4 offset +9 st</td><td>391.995 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>VAL-H5</td><td>hole 5 offset +11 st</td><td>440.0 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>VAL-H6</td><td>hole 6 offset +12 st</td><td>466.164 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>VAL-ROOT</td><td>root A#3</td><td>233.082 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>261.626 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>VAL-H2</td><td>hole 2 offset +4 st</td><td>293.665 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>VAL-H3</td><td>hole 3 offset +7 st</td><td>349.228 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>VAL-H4</td><td>hole 4 offset +9 st</td><td>391.995 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>VAL-H5</td><td>hole 5 offset +11 st</td><td>440.0 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>VAL-H6</td><td>hole 6 offset +12 st</td><td>466.164 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-A3-J3</td><td>VAL-ROOT</td><td>root A3</td><td>220.000 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>ALG-A3-J3</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>246.942 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-A3-J3</td><td>VAL-H2</td><td>hole 2 offset +4 st</td><td>277.183 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-A3-J3</td><td>VAL-H3</td><td>hole 3 offset +7 st</td><td>329.628 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-A3-J3</td><td>VAL-H4</td><td>hole 4 offset +9 st</td><td>369.994 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-A3-J3</td><td>VAL-H5</td><td>hole 5 offset +11 st</td><td>415.305 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-A3-J3</td><td>VAL-H6</td><td>hole 6 offset +12 st</td><td>440.0 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>VAL-ROOT</td><td>root B3</td><td>246.942 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>277.183 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>VAL-H2</td><td>hole 2 offset +4 st</td><td>311.127 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>VAL-H3</td><td>hole 3 offset +7 st</td><td>369.994 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>VAL-H4</td><td>hole 4 offset +9 st</td><td>415.305 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>VAL-H5</td><td>hole 5 offset +11 st</td><td>466.164 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>VAL-H6</td><td>hole 6 offset +12 st</td><td>493.883 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALL</td><td>VAL-FIPPLE</td><td>clean attack and stable octave jump</td><td>no choking at normal breath</td><td></td><td>subjective plus recording</td><td>TBD temp/RH</td><td></td><td>Adjust windway height, splitting edge sharpness, and window length.</td></tr>
+<tr><td>DOUBLE</td><td>VAL-DRONE-BEAT</td><td>melody/drone pressure interaction</td><td>no severe stealing or beating unless intentional</td><td></td><td>recorded comparison</td><td>TBD temp/RH</td><td></td><td>Restrict windway, retune drone vent, or separate mouth inlets.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>supplier-rfq.md</h2>
+
+<p>Supplier email/request-for-quote starter.</p>
+
+<h1>Supplier RFQ Draft</h1>
+
+<p>Subject: Quote request for straight-grain woodwind blanks and optional ferrule stock</p>
+
+<p>Hello,</p>
+
+<p>I am building a small run of long fipple flutes and need stable straight-grain blanks suitable for bored woodwind bodies.</p>
+
+<p>Please quote the following:</p>
+
+<ul>
+<li>4 to 8 blanks, 1.25 to 1.50 in square or round, 30 to 38 in long.</li>
+<li>Species options: elder, locust, ash, maple, cherry, walnut, or similar stable hardwood.</li>
+<li>Moisture content and straightness/grain-runout information.</li>
+<li>Any longer stock suitable for 85-90 cm flute bodies.</li>
+<li>Optional thin-wall brass tube or hardwood ferrule stock around 1.25 to 1.40 in ID/OD range.</li>
+</ul>
+
+<p>The blanks will be drilled or split-routed along the long axis, then turned and tuned, so straight grain and low checking risk matter more than figure.</p>
+
+<p>Please include unit price, volume price, lead time, shipping estimate, and any recommended substitutes.</p>
+
+<p>Thank you,</p>
+<p>Tony Koop</p>
+
+<div class="page-break"></div>
+
+<h2>visual-bom-brief.md</h2>
+
+<p>Art direction for an image-forward visual BOM.</p>
+
+<h1>Visual BOM Brief</h1>
+
+<p>Create one image-forward BOM plate with:</p>
+
+<ul>
+<li>hero view of a kaval, an Alghosazi, and the fipple-head section;</li>
+<li>item rows for body blank, fipple plug, cork/ferrule, drilling template, finish, and validation tools;</li>
+<li>callouts that distinguish make vs buy parts;</li>
+<li>source status labels: verified price, spec only, or shop stock.</li>
+</ul>
+
+<p>Image sources:</p>
+
+<ul>
+<li>Use real shop photos after P0/P1 prototypes exist.</li>
+<li>Until then, use `images/hero.png` and the SVG drawings as concept placeholders.</li>
+<li>Do not use vendor or Fujara Flutes photos directly in the BOM without permission.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>wolfram-starter.wl</h2>
+
+<p>Wolfram starter for physics, optimization, visualization, and validation.</p>
+
+<pre><code>
+(* Kaval + Alghosazi starter. Full v4.2 packet source is in wolfram/instrument-model.wl after generation. *)
+ClearAll[&quot;Global`*&quot;];
+cInPerSec = 13552;
+freqFromMidi[midi_, a4_: 440] := a4*2^((midi - 69)/12);
+openPipeLeff[f_] := cInPerSec/(2*f);
+holeFromLabium[labiumToFoot_, semitoneOffset_] := labiumToFoot*2^(-semitoneOffset/12);
+centsError[measured_, target_] := 1200*Log[2, measured/target];
+</code></pre>
+
+<div class="page-break"></div>
+
+<h2>README.md</h2>
+
+<p>Project artifact.</p>
+
+<h1>Kaval + Alghosazi Fipple Flutes</h1>
+
+<p>This repository is a build-ready design packet for two related long fipple flutes:</p>
+
+<ul>
+<li>a **Moldavian/Romanian-style fipple kaval** family, including 5-hole, 7-hole, two-piece, and double-drone options;</li>
+<li>a **fipple Alghosazi** family inspired by the Anasazi/Basketmaker long-flute lineage, with an easier fipple head and a rear thumb hole.</li>
+</ul>
+
+<p>The head design intentionally borrows from Tony&#x27;s `fujara` CAD: the player blows into an end mouth inlet, the air travels through a controlled internal flue, and sound is made at a side **true sound window** and splitting edge. The head is not copied from a commercial maker; it is a Tony-shop fujara/NAF hybrid that can be tuned and rebuilt.</p>
+
+<h2>Build First</h2>
+
+<p>Start with these prototypes:</p>
+
+<table>
+<tr><th>Prototype</th><th>Why</th></tr>
+<tr><td>`KAV-A3-5H`</td><td>Best first kaval: published 74 cm precedent, forgiving length, 5-hole pattern.</td></tr>
+<tr><td>`ALG-AS3-J2`</td><td>Best first Alghosazi: published 82 cm two-piece precedent, thumb-hole layout.</td></tr>
+<tr><td>`P0-FIPPLE-HEAD`</td><td>Scrap head tile that proves the mouth inlet, flue, window, and splitting edge before a full body.</td></tr>
+</table>
+
+<h2>File Map</h2>
+
+<table>
+<tr><th>File</th><th>Use</th></tr>
+<tr><td>`Kaval-Alghosazi-Design.xlsx`</td><td>Parametric workbook: family spec, formulas, hole schedules, fipple inputs.</td></tr>
+<tr><td>`design.md`</td><td>Acoustic model, cultural/source notes, assumptions, and build intent.</td></tr>
+<tr><td>`family-spec.csv`</td><td>Row-per-member design table used by drawing/CAD generators.</td></tr>
+<tr><td>`hole-schedule.csv`</td><td>First-pass hole positions measured from labium and foot.</td></tr>
+<tr><td>`bom.csv`, `sourcing.csv`, `cut-list.csv`</td><td>Procurement and stock prep.</td></tr>
+<tr><td>`assembly-manual.md`</td><td>Shop sequence from fipple tile through tuning.</td></tr>
+<tr><td>`drawings/`</td><td>SVG manufacturing drawings and head/joint details.</td></tr>
+<tr><td>`cad/`</td><td>OpenSCAD and SolidWorks starter handoff files.</td></tr>
+<tr><td>`cnc/`</td><td>v4.2 operation plan and setup sheet.</td></tr>
+<tr><td>`validation.csv`</td><td>Tuning and empirical correction log.</td></tr>
+<tr><td>`capstone-deck.pptx`, `print-packet.pdf`, `site/index.html`</td><td>Presentation, shop print, and build-log deliverables.</td></tr>
+</table>
+
+<h2>Status</h2>
+
+<p>This is a first-pass engineering packet. Dimensions are parametric and source-backed where possible, but the fipple/sound-window correction is marked as a measured-prototype variable, not a borrowed NAF K2 correction.</p>
+
+<h2>Attribution</h2>
+
+<p>The kaval references come from Moldavian/Romanian shepherd-flute practice; the Alghosazi references point toward Anasazi/Basketmaker flute replicas and contemporary adaptations. This packet is a modern shop design by Tony Koop, built with respect for those lineages and explicit source notes in `sources.md`.</p>
+
+<div class="page-break"></div>
+
+<h2>alghosazi-hole-schedule.csv</h2>
+
+<p>Project artifact.</p>
+
+<table>
+<tr><th>member_id</th><th>instrument</th><th>hole_no_from_foot</th><th>offset_st</th><th>target_hz</th><th>x_from_labium_in</th><th>x_from_foot_in</th><th>starter_drill_in</th><th>target_final_dia_in</th><th>orientation</th><th>formula</th></tr>
+<tr><td>ALG-AS3-J2</td><td>Fipple Alghosazi</td><td>1</td><td>2</td><td>261.626</td><td>27.158</td><td>3.326</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-J2</td><td>Fipple Alghosazi</td><td>2</td><td>4</td><td>293.665</td><td>24.195</td><td>6.289</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-J2</td><td>Fipple Alghosazi</td><td>3</td><td>7</td><td>349.228</td><td>20.345</td><td>10.138</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-J2</td><td>Fipple Alghosazi</td><td>4</td><td>9</td><td>391.995</td><td>18.126</td><td>12.358</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-J2</td><td>Fipple Alghosazi</td><td>5</td><td>11</td><td>440.0</td><td>16.148</td><td>14.335</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-J2</td><td>Fipple Alghosazi</td><td>6</td><td>12</td><td>466.164</td><td>15.242</td><td>15.242</td><td>0.2188</td><td>0.3125</td><td>back thumb</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>Fipple Alghosazi</td><td>1</td><td>2</td><td>261.626</td><td>28.21</td><td>3.455</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>Fipple Alghosazi</td><td>2</td><td>4</td><td>293.665</td><td>25.132</td><td>6.532</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>Fipple Alghosazi</td><td>3</td><td>7</td><td>349.228</td><td>21.134</td><td>10.531</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>Fipple Alghosazi</td><td>4</td><td>9</td><td>391.995</td><td>18.828</td><td>12.837</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>Fipple Alghosazi</td><td>5</td><td>11</td><td>440.0</td><td>16.774</td><td>14.891</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>Fipple Alghosazi</td><td>6</td><td>12</td><td>466.164</td><td>15.832</td><td>15.832</td><td>0.2188</td><td>0.3125</td><td>back thumb</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-A3-J3</td><td>Fipple Alghosazi</td><td>1</td><td>2</td><td>246.942</td><td>24.045</td><td>2.945</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-A3-J3</td><td>Fipple Alghosazi</td><td>2</td><td>4</td><td>277.183</td><td>21.422</td><td>5.568</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-A3-J3</td><td>Fipple Alghosazi</td><td>3</td><td>7</td><td>329.628</td><td>18.014</td><td>8.976</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-A3-J3</td><td>Fipple Alghosazi</td><td>4</td><td>9</td><td>369.994</td><td>16.048</td><td>10.942</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-A3-J3</td><td>Fipple Alghosazi</td><td>5</td><td>11</td><td>415.305</td><td>14.298</td><td>12.693</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-A3-J3</td><td>Fipple Alghosazi</td><td>6</td><td>12</td><td>440.0</td><td>13.495</td><td>13.495</td><td>0.2188</td><td>0.3125</td><td>back thumb</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>Fipple Alghosazi</td><td>1</td><td>2</td><td>277.183</td><td>23.082</td><td>2.827</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>Fipple Alghosazi</td><td>2</td><td>4</td><td>311.127</td><td>20.564</td><td>5.345</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>Fipple Alghosazi</td><td>3</td><td>7</td><td>369.994</td><td>17.292</td><td>8.617</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>Fipple Alghosazi</td><td>4</td><td>9</td><td>415.305</td><td>15.406</td><td>10.503</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>Fipple Alghosazi</td><td>5</td><td>11</td><td>466.164</td><td>13.725</td><td>12.184</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>Fipple Alghosazi</td><td>6</td><td>12</td><td>493.883</td><td>12.955</td><td>12.955</td><td>0.2188</td><td>0.3125</td><td>back thumb</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>double-drone-spec.csv</h2>
+
+<p>Project artifact.</p>
+
+<table>
+<tr><th>assembly_id</th><th>melody_side</th><th>drone_side</th><th>windways</th><th>body_strategy</th><th>overall_length_in</th><th>validation</th></tr>
+<tr><td>KAVGH-A3-DOUBLE</td><td>KAV-A3-5H</td><td>A3 drone with rear thumb vent raising to B3</td><td>2</td><td>two separate bores lashed or mechanically joined; melody kaval removable</td><td>29.1 to 31.0</td><td>Tune melody alone, drone alone, then both together for beating and pressure interaction.</td></tr>
+<tr><td>DALG-AS3-DOUBLE</td><td>ALG-AS3-J2 or ALG-AS3-SOLID</td><td>reedy/natural-harmonic drone bore with independent windway</td><td>2</td><td>parallel-tube double flute with two mouth inlets; each side playable separately</td><td>33.1</td><td>Record both windways independently and together; check pressure stealing between ducts.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>family-spec.csv</h2>
+
+<p>Project artifact.</p>
+
+<table>
+<tr><th>member_id</th><th>instrument</th><th>subtype</th><th>target_note</th><th>target_hz</th><th>midi</th><th>scale_label</th><th>hole_count</th><th>hole_offsets_st</th><th>bore_id_in</th><th>body_od_in</th><th>wall_in</th><th>total_length_cm</th><th>total_length_in</th><th>top_to_window_in</th><th>labium_to_foot_in</th><th>open_pipe_leff_in</th><th>estimated_sound_window_correction_in</th><th>tuning_delta_interpretation</th><th>chamber_to_bore</th><th>wood_species</th><th>construction</th><th>source_basis</th><th>done_bar_ref</th><th>notes</th></tr>
+<tr><td>KAV-GS3-5H</td><td>Fipple Kaval</td><td>5-hole Moldavian/Romanian</td><td>G#3</td><td>207.652</td><td>56</td><td>Kaval gypsy mode: 0,2,3,6,7,8 semitones</td><td>5</td><td>2 3 6 7 8</td><td>0.8750</td><td>1.3750</td><td>0.2500</td><td>79.0</td><td>31.102</td><td>1.600</td><td>29.502</td><td>32.631</td><td>3.129</td><td>positive: needs fipple/window end correction or added acoustic length</td><td>33.7</td><td>Locust or elder</td><td>solid or split blank; optional two-piece joint</td><td>Fujara Flutes observed G# kaval length 79 cm</td><td>fujara + flutes + pistalka</td><td>Longest 5-hole starter; use as low-voice reference.</td></tr>
+<tr><td>KAV-A3-5H</td><td>Fipple Kaval</td><td>5-hole Moldavian/Romanian</td><td>A3</td><td>220.000</td><td>57</td><td>Kaval gypsy mode: 0,2,3,6,7,8 semitones</td><td>5</td><td>2 3 6 7 8</td><td>0.8750</td><td>1.3750</td><td>0.2500</td><td>74.0</td><td>29.134</td><td>1.600</td><td>27.534</td><td>30.800</td><td>3.266</td><td>positive: needs fipple/window end correction or added acoustic length</td><td>31.5</td><td>Elder</td><td>two-piece optional hand-cut joint</td><td>Fujara Flutes observed A kaval length 74 cm</td><td>fujara + flutes + pistalka</td><td>Recommended first kaval because length, bore, and hand span are forgiving.</td></tr>
+<tr><td>KAV-B3-5H</td><td>Fipple Kaval</td><td>5-hole Moldavian/Romanian</td><td>B3</td><td>246.942</td><td>59</td><td>Kaval gypsy mode: 0,2,3,6,7,8 semitones</td><td>5</td><td>2 3 6 7 8</td><td>0.8125</td><td>1.3125</td><td>0.2500</td><td>67.0</td><td>26.378</td><td>1.500</td><td>24.878</td><td>27.440</td><td>2.562</td><td>positive: needs fipple/window end correction or added acoustic length</td><td>30.6</td><td>Elder</td><td>solid split blank</td><td>Fujara Flutes observed B kaval length 67 cm</td><td>fujara + flutes + pistalka</td><td>Compact 5-hole version; tighter fipple tolerances.</td></tr>
+<tr><td>KAV-C4-5H</td><td>Fipple Kaval</td><td>5-hole Moldavian/Romanian</td><td>C4</td><td>261.626</td><td>60</td><td>Kaval gypsy mode: 0,2,3,6,7,8 semitones</td><td>5</td><td>2 3 6 7 8</td><td>0.7500</td><td>1.2500</td><td>0.2500</td><td>62.0</td><td>24.409</td><td>1.450</td><td>22.959</td><td>25.900</td><td>2.940</td><td>positive: needs fipple/window end correction or added acoustic length</td><td>30.6</td><td>Elder, maple, or cherry</td><td>solid split blank</td><td>Fujara Flutes observed C kaval length 62 cm</td><td>fujara + flutes + pistalka</td><td>Smallest 5-hole kaval; good for fipple/head trials.</td></tr>
+<tr><td>KAV-A3-7H</td><td>Fipple Kaval</td><td>7-hole expanded Moldavian</td><td>A3</td><td>220.000</td><td>57</td><td>Expanded kaval: 0,2,3,4,6,7,8,9 semitones</td><td>7</td><td>2 3 4 6 7 8 9</td><td>0.8750</td><td>1.4000</td><td>0.2625</td><td>90.0</td><td>35.433</td><td>1.650</td><td>33.783</td><td>30.800</td><td>-2.983</td><td>negative: observed source length is overlong for this nominal root; trim foot or reassess key naming</td><td>38.6</td><td>Elder</td><td>solid split blank</td><td>Fujara Flutes observed 7-hole A kaval length 90 cm</td><td>fujara + flutes + pistalka</td><td>Expanded note set; lower holes may be covered with finger bases.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>Fipple Kaval</td><td>7-hole expanded Moldavian</td><td>A#3</td><td>233.082</td><td>58</td><td>Expanded kaval: 0,2,3,4,6,7,8,9 semitones</td><td>7</td><td>2 3 4 6 7 8 9</td><td>0.8750</td><td>1.4000</td><td>0.2625</td><td>85.0</td><td>33.465</td><td>1.650</td><td>31.815</td><td>29.071</td><td>-2.743</td><td>negative: observed source length is overlong for this nominal root; trim foot or reassess key naming</td><td>36.4</td><td>Dogwood or elder</td><td>two-piece optional hand-cut joint</td><td>Fujara Flutes observed 7-hole A# kaval length 85 cm</td><td>fujara + flutes + pistalka</td><td>Good two-piece test because the published example is collapsible.</td></tr>
+<tr><td>KAV-B3-7H</td><td>Fipple Kaval</td><td>7-hole expanded Moldavian</td><td>B3</td><td>246.942</td><td>59</td><td>Expanded kaval: 0,2,3,4,6,7,8,9 semitones</td><td>7</td><td>2 3 4 6 7 8 9</td><td>0.8125</td><td>1.3125</td><td>0.2500</td><td>69.0</td><td>27.165</td><td>1.500</td><td>25.665</td><td>27.440</td><td>1.774</td><td>positive: needs fipple/window end correction or added acoustic length</td><td>31.6</td><td>Elder</td><td>solid split blank</td><td>Fujara Flutes observed 7-hole B kaval length 69 cm</td><td>fujara + flutes + pistalka</td><td>Compact 7-hole version; validate hand position before final hole diameters.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>Fipple Alghosazi</td><td>Anasazi-derived with thumb hole</td><td>A#3</td><td>233.082</td><td>58</td><td>Anasazi-derived: 0,2,4,7,9,11,12 semitones</td><td>6</td><td>2 4 7 9 11 12</td><td>0.8750</td><td>1.3750</td><td>0.2500</td><td>82.0</td><td>32.283</td><td>1.800</td><td>30.483</td><td>29.071</td><td>-1.412</td><td>negative: observed source length is overlong for this nominal root; trim foot or reassess key naming</td><td>34.8</td><td>Ash</td><td>two-piece hand-cut joint</td><td>Fujara Flutes observed A# Alghosazi length 82 cm</td><td>fujara + flutes + pistalka</td><td>Recommended first Alghosazi; published example uses a collapsible joint.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>Fipple Alghosazi</td><td>Anasazi-derived with thumb hole</td><td>A#3</td><td>233.082</td><td>58</td><td>Anasazi-derived: 0,2,4,7,9,11,12 semitones</td><td>6</td><td>2 4 7 9 11 12</td><td>0.8750</td><td>1.3750</td><td>0.2500</td><td>85.0</td><td>33.465</td><td>1.800</td><td>31.665</td><td>29.071</td><td>-2.593</td><td>negative: observed source length is overlong for this nominal root; trim foot or reassess key naming</td><td>36.2</td><td>Locust</td><td>solid split blank</td><td>Fujara Flutes observed solid A# Alghosazi length 85 cm</td><td>fujara + flutes + pistalka</td><td>Solid-body alternate for comparing joint vs no-joint response.</td></tr>
+<tr><td>ALG-A3-J3</td><td>Fipple Alghosazi</td><td>Anasazi-derived with thumb hole</td><td>A3</td><td>220.000</td><td>57</td><td>Anasazi-derived: 0,2,4,7,9,11,12 semitones</td><td>6</td><td>2 4 7 9 11 12</td><td>0.8750</td><td>1.3750</td><td>0.2500</td><td>73.0</td><td>28.740</td><td>1.750</td><td>26.990</td><td>30.800</td><td>3.810</td><td>positive: needs fipple/window end correction or added acoustic length</td><td>30.8</td><td>Oak</td><td>three-piece hand-cut joint</td><td>Fujara Flutes observed A Alghosazi length 73 cm</td><td>fujara + flutes + pistalka</td><td>Use as the modular joint stress test.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>Fipple Alghosazi</td><td>Anasazi-derived with thumb hole</td><td>B3</td><td>246.942</td><td>59</td><td>Anasazi-derived: 0,2,4,7,9,11,12 semitones</td><td>6</td><td>2 4 7 9 11 12</td><td>0.8125</td><td>1.3125</td><td>0.2500</td><td>70.0</td><td>27.559</td><td>1.650</td><td>25.909</td><td>27.440</td><td>1.531</td><td>positive: needs fipple/window end correction or added acoustic length</td><td>31.9</td><td>Elder or maple</td><td>solid split blank</td><td>Fujara Flutes observed B Alghosazi length 70 cm</td><td>fujara + flutes + pistalka</td><td>Compact Alghosazi; top thumb hole needs ergonomic mockup.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>hole-schedule.csv</h2>
+
+<p>Project artifact.</p>
+
+<table>
+<tr><th>member_id</th><th>instrument</th><th>hole_no_from_foot</th><th>offset_st</th><th>target_hz</th><th>x_from_labium_in</th><th>x_from_foot_in</th><th>starter_drill_in</th><th>target_final_dia_in</th><th>orientation</th><th>formula</th></tr>
+<tr><td>KAV-GS3-5H</td><td>Fipple Kaval</td><td>1</td><td>2</td><td>233.082</td><td>26.284</td><td>3.219</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-GS3-5H</td><td>Fipple Kaval</td><td>2</td><td>3</td><td>246.942</td><td>24.808</td><td>4.694</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-GS3-5H</td><td>Fipple Kaval</td><td>3</td><td>6</td><td>293.665</td><td>20.861</td><td>8.641</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-GS3-5H</td><td>Fipple Kaval</td><td>4</td><td>7</td><td>311.127</td><td>19.69</td><td>9.812</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-GS3-5H</td><td>Fipple Kaval</td><td>5</td><td>8</td><td>329.628</td><td>18.585</td><td>10.917</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-5H</td><td>Fipple Kaval</td><td>1</td><td>2</td><td>246.942</td><td>24.53</td><td>3.004</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-5H</td><td>Fipple Kaval</td><td>2</td><td>3</td><td>261.626</td><td>23.153</td><td>4.381</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-5H</td><td>Fipple Kaval</td><td>3</td><td>6</td><td>311.127</td><td>19.469</td><td>8.064</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-5H</td><td>Fipple Kaval</td><td>4</td><td>7</td><td>329.628</td><td>18.377</td><td>9.157</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-5H</td><td>Fipple Kaval</td><td>5</td><td>8</td><td>349.228</td><td>17.345</td><td>10.189</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-5H</td><td>Fipple Kaval</td><td>1</td><td>2</td><td>277.183</td><td>22.164</td><td>2.714</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-5H</td><td>Fipple Kaval</td><td>2</td><td>3</td><td>293.665</td><td>20.92</td><td>3.958</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-5H</td><td>Fipple Kaval</td><td>3</td><td>6</td><td>349.228</td><td>17.591</td><td>7.287</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-5H</td><td>Fipple Kaval</td><td>4</td><td>7</td><td>369.994</td><td>16.604</td><td>8.274</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-5H</td><td>Fipple Kaval</td><td>5</td><td>8</td><td>391.995</td><td>15.672</td><td>9.206</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-C4-5H</td><td>Fipple Kaval</td><td>1</td><td>2</td><td>293.665</td><td>20.455</td><td>2.505</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-C4-5H</td><td>Fipple Kaval</td><td>2</td><td>3</td><td>311.127</td><td>19.307</td><td>3.653</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-C4-5H</td><td>Fipple Kaval</td><td>3</td><td>6</td><td>369.994</td><td>16.235</td><td>6.725</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-C4-5H</td><td>Fipple Kaval</td><td>4</td><td>7</td><td>391.995</td><td>15.324</td><td>7.636</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-C4-5H</td><td>Fipple Kaval</td><td>5</td><td>8</td><td>415.305</td><td>14.464</td><td>8.496</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-7H</td><td>Fipple Kaval</td><td>1</td><td>2</td><td>246.942</td><td>30.097</td><td>3.686</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-7H</td><td>Fipple Kaval</td><td>2</td><td>3</td><td>261.626</td><td>28.408</td><td>5.375</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-7H</td><td>Fipple Kaval</td><td>3</td><td>4</td><td>277.183</td><td>26.814</td><td>6.969</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-7H</td><td>Fipple Kaval</td><td>4</td><td>6</td><td>311.127</td><td>23.888</td><td>9.895</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-7H</td><td>Fipple Kaval</td><td>5</td><td>7</td><td>329.628</td><td>22.547</td><td>11.236</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-7H</td><td>Fipple Kaval</td><td>6</td><td>8</td><td>349.228</td><td>21.282</td><td>12.501</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-7H</td><td>Fipple Kaval</td><td>7</td><td>9</td><td>369.994</td><td>20.088</td><td>13.696</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-AS3-7H</td><td>Fipple Kaval</td><td>1</td><td>2</td><td>261.626</td><td>28.344</td><td>3.471</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-AS3-7H</td><td>Fipple Kaval</td><td>2</td><td>3</td><td>277.183</td><td>26.753</td><td>5.062</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-AS3-7H</td><td>Fipple Kaval</td><td>3</td><td>4</td><td>293.665</td><td>25.251</td><td>6.563</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-AS3-7H</td><td>Fipple Kaval</td><td>4</td><td>6</td><td>329.628</td><td>22.496</td><td>9.318</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-AS3-7H</td><td>Fipple Kaval</td><td>5</td><td>7</td><td>349.228</td><td>21.234</td><td>10.581</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-AS3-7H</td><td>Fipple Kaval</td><td>6</td><td>8</td><td>369.994</td><td>20.042</td><td>11.773</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-AS3-7H</td><td>Fipple Kaval</td><td>7</td><td>9</td><td>391.995</td><td>18.917</td><td>12.898</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-7H</td><td>Fipple Kaval</td><td>1</td><td>2</td><td>277.183</td><td>22.865</td><td>2.8</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-7H</td><td>Fipple Kaval</td><td>2</td><td>3</td><td>293.665</td><td>21.582</td><td>4.083</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-7H</td><td>Fipple Kaval</td><td>3</td><td>4</td><td>311.127</td><td>20.371</td><td>5.295</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-7H</td><td>Fipple Kaval</td><td>4</td><td>6</td><td>349.228</td><td>18.148</td><td>7.517</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-7H</td><td>Fipple Kaval</td><td>5</td><td>7</td><td>369.994</td><td>17.13</td><td>8.536</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-7H</td><td>Fipple Kaval</td><td>6</td><td>8</td><td>391.995</td><td>16.168</td><td>9.497</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-7H</td><td>Fipple Kaval</td><td>7</td><td>9</td><td>415.305</td><td>15.261</td><td>10.405</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-J2</td><td>Fipple Alghosazi</td><td>1</td><td>2</td><td>261.626</td><td>27.158</td><td>3.326</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-J2</td><td>Fipple Alghosazi</td><td>2</td><td>4</td><td>293.665</td><td>24.195</td><td>6.289</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-J2</td><td>Fipple Alghosazi</td><td>3</td><td>7</td><td>349.228</td><td>20.345</td><td>10.138</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-J2</td><td>Fipple Alghosazi</td><td>4</td><td>9</td><td>391.995</td><td>18.126</td><td>12.358</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-J2</td><td>Fipple Alghosazi</td><td>5</td><td>11</td><td>440.0</td><td>16.148</td><td>14.335</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-J2</td><td>Fipple Alghosazi</td><td>6</td><td>12</td><td>466.164</td><td>15.242</td><td>15.242</td><td>0.2188</td><td>0.3125</td><td>back thumb</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>Fipple Alghosazi</td><td>1</td><td>2</td><td>261.626</td><td>28.21</td><td>3.455</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>Fipple Alghosazi</td><td>2</td><td>4</td><td>293.665</td><td>25.132</td><td>6.532</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>Fipple Alghosazi</td><td>3</td><td>7</td><td>349.228</td><td>21.134</td><td>10.531</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>Fipple Alghosazi</td><td>4</td><td>9</td><td>391.995</td><td>18.828</td><td>12.837</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>Fipple Alghosazi</td><td>5</td><td>11</td><td>440.0</td><td>16.774</td><td>14.891</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>Fipple Alghosazi</td><td>6</td><td>12</td><td>466.164</td><td>15.832</td><td>15.832</td><td>0.2188</td><td>0.3125</td><td>back thumb</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-A3-J3</td><td>Fipple Alghosazi</td><td>1</td><td>2</td><td>246.942</td><td>24.045</td><td>2.945</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-A3-J3</td><td>Fipple Alghosazi</td><td>2</td><td>4</td><td>277.183</td><td>21.422</td><td>5.568</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-A3-J3</td><td>Fipple Alghosazi</td><td>3</td><td>7</td><td>329.628</td><td>18.014</td><td>8.976</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-A3-J3</td><td>Fipple Alghosazi</td><td>4</td><td>9</td><td>369.994</td><td>16.048</td><td>10.942</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-A3-J3</td><td>Fipple Alghosazi</td><td>5</td><td>11</td><td>415.305</td><td>14.298</td><td>12.693</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-A3-J3</td><td>Fipple Alghosazi</td><td>6</td><td>12</td><td>440.0</td><td>13.495</td><td>13.495</td><td>0.2188</td><td>0.3125</td><td>back thumb</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>Fipple Alghosazi</td><td>1</td><td>2</td><td>277.183</td><td>23.082</td><td>2.827</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>Fipple Alghosazi</td><td>2</td><td>4</td><td>311.127</td><td>20.564</td><td>5.345</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>Fipple Alghosazi</td><td>3</td><td>7</td><td>369.994</td><td>17.292</td><td>8.617</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>Fipple Alghosazi</td><td>4</td><td>9</td><td>415.305</td><td>15.406</td><td>10.503</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>Fipple Alghosazi</td><td>5</td><td>11</td><td>466.164</td><td>13.725</td><td>12.184</td><td>0.2188</td><td>0.3125</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>Fipple Alghosazi</td><td>6</td><td>12</td><td>493.883</td><td>12.955</td><td>12.955</td><td>0.2188</td><td>0.3125</td><td>back thumb</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>kaval-hole-schedule.csv</h2>
+
+<p>Project artifact.</p>
+
+<table>
+<tr><th>member_id</th><th>instrument</th><th>hole_no_from_foot</th><th>offset_st</th><th>target_hz</th><th>x_from_labium_in</th><th>x_from_foot_in</th><th>starter_drill_in</th><th>target_final_dia_in</th><th>orientation</th><th>formula</th></tr>
+<tr><td>KAV-GS3-5H</td><td>Fipple Kaval</td><td>1</td><td>2</td><td>233.082</td><td>26.284</td><td>3.219</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-GS3-5H</td><td>Fipple Kaval</td><td>2</td><td>3</td><td>246.942</td><td>24.808</td><td>4.694</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-GS3-5H</td><td>Fipple Kaval</td><td>3</td><td>6</td><td>293.665</td><td>20.861</td><td>8.641</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-GS3-5H</td><td>Fipple Kaval</td><td>4</td><td>7</td><td>311.127</td><td>19.69</td><td>9.812</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-GS3-5H</td><td>Fipple Kaval</td><td>5</td><td>8</td><td>329.628</td><td>18.585</td><td>10.917</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-5H</td><td>Fipple Kaval</td><td>1</td><td>2</td><td>246.942</td><td>24.53</td><td>3.004</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-5H</td><td>Fipple Kaval</td><td>2</td><td>3</td><td>261.626</td><td>23.153</td><td>4.381</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-5H</td><td>Fipple Kaval</td><td>3</td><td>6</td><td>311.127</td><td>19.469</td><td>8.064</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-5H</td><td>Fipple Kaval</td><td>4</td><td>7</td><td>329.628</td><td>18.377</td><td>9.157</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-5H</td><td>Fipple Kaval</td><td>5</td><td>8</td><td>349.228</td><td>17.345</td><td>10.189</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-5H</td><td>Fipple Kaval</td><td>1</td><td>2</td><td>277.183</td><td>22.164</td><td>2.714</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-5H</td><td>Fipple Kaval</td><td>2</td><td>3</td><td>293.665</td><td>20.92</td><td>3.958</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-5H</td><td>Fipple Kaval</td><td>3</td><td>6</td><td>349.228</td><td>17.591</td><td>7.287</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-5H</td><td>Fipple Kaval</td><td>4</td><td>7</td><td>369.994</td><td>16.604</td><td>8.274</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-5H</td><td>Fipple Kaval</td><td>5</td><td>8</td><td>391.995</td><td>15.672</td><td>9.206</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-C4-5H</td><td>Fipple Kaval</td><td>1</td><td>2</td><td>293.665</td><td>20.455</td><td>2.505</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-C4-5H</td><td>Fipple Kaval</td><td>2</td><td>3</td><td>311.127</td><td>19.307</td><td>3.653</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-C4-5H</td><td>Fipple Kaval</td><td>3</td><td>6</td><td>369.994</td><td>16.235</td><td>6.725</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-C4-5H</td><td>Fipple Kaval</td><td>4</td><td>7</td><td>391.995</td><td>15.324</td><td>7.636</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-C4-5H</td><td>Fipple Kaval</td><td>5</td><td>8</td><td>415.305</td><td>14.464</td><td>8.496</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-7H</td><td>Fipple Kaval</td><td>1</td><td>2</td><td>246.942</td><td>30.097</td><td>3.686</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-7H</td><td>Fipple Kaval</td><td>2</td><td>3</td><td>261.626</td><td>28.408</td><td>5.375</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-7H</td><td>Fipple Kaval</td><td>3</td><td>4</td><td>277.183</td><td>26.814</td><td>6.969</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-7H</td><td>Fipple Kaval</td><td>4</td><td>6</td><td>311.127</td><td>23.888</td><td>9.895</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-7H</td><td>Fipple Kaval</td><td>5</td><td>7</td><td>329.628</td><td>22.547</td><td>11.236</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-7H</td><td>Fipple Kaval</td><td>6</td><td>8</td><td>349.228</td><td>21.282</td><td>12.501</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-A3-7H</td><td>Fipple Kaval</td><td>7</td><td>9</td><td>369.994</td><td>20.088</td><td>13.696</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-AS3-7H</td><td>Fipple Kaval</td><td>1</td><td>2</td><td>261.626</td><td>28.344</td><td>3.471</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-AS3-7H</td><td>Fipple Kaval</td><td>2</td><td>3</td><td>277.183</td><td>26.753</td><td>5.062</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-AS3-7H</td><td>Fipple Kaval</td><td>3</td><td>4</td><td>293.665</td><td>25.251</td><td>6.563</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-AS3-7H</td><td>Fipple Kaval</td><td>4</td><td>6</td><td>329.628</td><td>22.496</td><td>9.318</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-AS3-7H</td><td>Fipple Kaval</td><td>5</td><td>7</td><td>349.228</td><td>21.234</td><td>10.581</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-AS3-7H</td><td>Fipple Kaval</td><td>6</td><td>8</td><td>369.994</td><td>20.042</td><td>11.773</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-AS3-7H</td><td>Fipple Kaval</td><td>7</td><td>9</td><td>391.995</td><td>18.917</td><td>12.898</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-7H</td><td>Fipple Kaval</td><td>1</td><td>2</td><td>277.183</td><td>22.865</td><td>2.8</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-7H</td><td>Fipple Kaval</td><td>2</td><td>3</td><td>293.665</td><td>21.582</td><td>4.083</td><td>0.1875</td><td>0.2500</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-7H</td><td>Fipple Kaval</td><td>3</td><td>4</td><td>311.127</td><td>20.371</td><td>5.295</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-7H</td><td>Fipple Kaval</td><td>4</td><td>6</td><td>349.228</td><td>18.148</td><td>7.517</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-7H</td><td>Fipple Kaval</td><td>5</td><td>7</td><td>369.994</td><td>17.13</td><td>8.536</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-7H</td><td>Fipple Kaval</td><td>6</td><td>8</td><td>391.995</td><td>16.168</td><td>9.497</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+<tr><td>KAV-B3-7H</td><td>Fipple Kaval</td><td>7</td><td>9</td><td>415.305</td><td>15.261</td><td>10.405</td><td>0.2188</td><td>0.3000</td><td>front</td><td>x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>photo-shotlist.md</h2>
+
+<p>Project artifact.</p>
+
+<h1>Photo Shotlist</h1>
+
+<p>Follow the repo-level photo pipeline style: real process photos replace concept placeholders as soon as shop work begins.</p>
+
+<h2>P0 Fipple Head</h2>
+
+<ul>
+<li>End mouth inlet before plug install.</li>
+<li>Removable flue plugs with shim labels.</li>
+<li>Side true sound window and splitting edge closeup.</li>
+<li>Tuner screenshot or phone photo during first tone.</li>
+</ul>
+
+<h2>P1 Bodies</h2>
+
+<ul>
+<li>Blank selection with grain orientation marked.</li>
+<li>Split blank or deep-bore setup.</li>
+<li>Routed/bored bore before glue-up.</li>
+<li>Hole template wrapped around body.</li>
+<li>First drilled undersized hole.</li>
+<li>Final tuned flute full length.</li>
+</ul>
+
+<h2>Jointed/Double Options</h2>
+
+<ul>
+<li>Tenon/socket before cork.</li>
+<li>Cork/ferrule fit closeup.</li>
+<li>Double-body temporary clamp test.</li>
+<li>Independent windways at the mouth end.</li>
+</ul>
+
+<h2>Finished Portfolio</h2>
+
+<ul>
+<li>Kaval and Alghosazi side by side.</li>
+<li>Player hand reach shot.</li>
+<li>Fipple head detail.</li>
+<li>Validation/tuning bench shot.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>risks.md</h2>
+
+<p>Project artifact.</p>
+
+<h1>Risks</h1>
+
+<h2>Acoustic</h2>
+
+<ul>
+<li>**Fipple/sound-window correction is unknown.** Test: build `P0-FIPPLE-HEAD`, record root prediction vs measured, and update `estimated_sound_window_correction_in`.</li>
+<li>**Hole positions are first-pass proportional.** Test: drill undersized and record before/after cents for every hole in `validation.csv`.</li>
+<li>**Double-drone windways may steal pressure from each other.** Test: record each windway alone and together; compare attack and cents drift.</li>
+</ul>
+
+<h2>Structural</h2>
+
+<ul>
+<li>**Long solid blanks can wander while drilling.** Test: bore scrap first and measure exit offset; use split-blank CNC if wander exceeds 0.050 in.</li>
+<li>**Two-piece joints can leak or crack.** Test: vacuum/leak check and dry assembly force check before finishing.</li>
+<li>**Splitting edge is fragile.** Test: inspect under magnification after each voicing change.</li>
+</ul>
+
+<h2>Ergonomic</h2>
+
+<ul>
+<li>**7-hole kaval lower holes may require base-of-finger coverage.** Test: paper wrap mockup before drilling final diameters.</li>
+<li>**Alghosazi thumb hole may not fit all hands.** Test: mark with tape, play air-grip, then drill undersized.</li>
+</ul>
+
+<h2>Supply</h2>
+
+<ul>
+<li>**Elder and locust blanks may be hard to source in required lengths.** Test: verify supplier stock before committing scale/key; use ash/maple/cherry for prototypes.</li>
+<li>**Ferrule dimensions may not match body OD.** Test: choose ferrule after body OD is turned, not before.</li>
+</ul>
+
+<h2>Fit And Finish</h2>
+
+<ul>
+<li>**Finish can clog the windway.** Test: mask windway and splitting edge; recheck attack after cure.</li>
+<li>**Cork compression changes with humidity.** Test: assemble/disassemble after overnight humidity change and record fit.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>sources.md</h2>
+
+<p>Project artifact.</p>
+
+<h1>Sources And Provenance</h1>
+
+<h2>External Pages Checked</h2>
+
+<ul>
+<li>Fujara Flutes Kaval page: https://www.fujaraflutes.com/moldavian-kaval-flutes</li>
+<li>Fujara Flutes Alghosazi page: https://www.fujaraflutes.com/alghosazi</li>
+<li>Flutopedia Native American flute tunings / Anasazi note: https://www.flutopedia.com/naf_tunings.htm</li>
+</ul>
+
+<h2>Local Sources Used</h2>
+
+<ul>
+<li>`../fujara/README.md`</li>
+<li>`../fujara/design-table/fujara_equations.md`</li>
+<li>`../fujara/CAD/fujara-body/G2Fujara_Assembly.SLDASM_dimensions.csv`</li>
+<li>`../drone-flutes/design.md`</li>
+<li>`../flutes/skills/parametric-design-table.md`</li>
+<li>`../pistalka/docs/build-packet/design.md`</li>
+</ul>
+
+<h2>Source-Backed Facts Used</h2>
+
+<ul>
+<li>The kaval reference page presents fipple-style kavals and gives 5-hole and 7-hole pitch sets.</li>
+<li>The same page documents examples in G#, A, B, C and a double Kaval/Kavalghoza drone concept.</li>
+<li>The Alghosazi reference page frames the instrument as an easier fipple adaptation of an Anasazi-style flute and notes the rear thumb-hole idea.</li>
+<li>Tony&#x27;s fujara CAD records a fipple/flue plug system with narrow windway, removable plug logic, and splitting-edge KPI values.</li>
+</ul>
+
+<h2>Assumptions Needing Prototype Data</h2>
+
+<ul>
+<li>Exact fipple sound-window end correction.</li>
+<li>Final hole diameters and undercutting.</li>
+<li>Alghosazi mode preference after listening/playing.</li>
+<li>Joint effect on tuning and response.</li>
+</ul>
+</body></html>

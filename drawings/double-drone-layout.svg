@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 520" width="1100" height="520" font-family="Arial, Helvetica, sans-serif">
+<rect width="1100" height="520" fill="white" stroke="black"/>
+<text x="40" y="45" font-size="24" font-weight="bold">Double Drone Layout</text>
+<rect x="90" y="150" width="850" height="70" rx="28" fill="#f3c37d" stroke="#4a2a10" stroke-width="3"/>
+<rect x="90" y="275" width="850" height="70" rx="28" fill="#e8b86d" stroke="#4a2a10" stroke-width="3"/>
+<text x="110" y="140" font-size="14">melody flute side (Kaval or Alghosazi)</text>
+<text x="110" y="265" font-size="14">drone side, independent windway</text>
+<rect x="90" y="165" width="70" height="40" fill="#111"/>
+<rect x="90" y="290" width="70" height="40" fill="#111"/>
+<circle cx="725" cy="310" r="13" fill="#111"/>
+<text x="755" y="315" font-size="13">optional rear thumb vent shifts drone up one tone</text>
+<line x1="230" y1="220" x2="230" y2="275" stroke="#444" stroke-dasharray="6,6"/>
+<line x1="620" y1="220" x2="620" y2="275" stroke="#444" stroke-dasharray="6,6"/>
+<text x="260" y="250" font-size="13">temporary bands/collars before permanent joinery</text>
+<text x="90" y="410" font-size="13">Tune each tube separately before coupling. If both sides are blown together, record pressure stealing and beating.</text>
+</svg>

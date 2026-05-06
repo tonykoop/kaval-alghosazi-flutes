@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kaval + Alghosazi Fipple Flutes — Tony Koop's Build Log</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="hero"><img class="hero-img" src="assets/hero.png" alt="Kaval + Alghosazi Fipple Flutes"><div class="hero-text"><h1>Kaval + Alghosazi Fipple Flutes</h1><p>Design a buildable family of long fipple kavals and Alghosazi flutes that feel close to the Fujara Flutes references while using Tony&#x27;s existing fujara/flute workshop logic: parametric dimensions, a controllable fipple sound-window head, split-blank CNC or deep-bore construction, validation tables, and documented tuning loops.</p></div></header>
+<main>
+<section><h2>What this is</h2><p>Design a buildable family of long fipple kavals and Alghosazi flutes that feel close to the Fujara Flutes references while using Tony&#x27;s existing fujara/flute workshop logic: parametric dimensions, a controllable fipple sound-window head, split-blank CNC or deep-bore construction, validation tables, and documented tuning loops.</p>
+<p>The first physical goal is not a perfect production run. It is a controlled prototype ladder: prove the fipple head, build one A3 5-hole kaval, build one A#3 Alghosazi with a thumb hole, then decide whether the two-piece and double-drone versions deserve full CAD.</p></section>
+<section><h2>The design</h2><p>These flutes are modeled as **open-open cylindrical fipple flutes** with a non-NAF fujara-style sound-window end correction.</p>
+<p>```text
+f = c / (2 * L_eff)
+c = 13552 in/s at about 68 F
+L_eff = physical_labium_to_foot + foot_end_correction + sound_window_correction
+foot_end_correction ~= 0.6 * bore_radius
+sound_window_correction = measured prototype value, not Tony&#x27;s NAF K2 table
+```</p>
+<p>For first-pass hole placement, the packet uses a proportional open-pipe layout:</p>
+<p>```text
+x_from_labium = labium_to_foot * 2^(-semitone_offset / 12)
+x_from_foot = labium_to_foot - x_from_labium
+```</p>
+<p>The hole schedule is intentionally a **starter drill schedule**. The builder drills undersized, tunes the root by trimming the foot, then opens each hole upward by careful reaming/undercutting. If a hole goes sharp, the recovery is wax test, bushing, or a rebuilt body.</p>
+<p>`family-spec.csv` includes `estimated_sound_window_correction_in`. Positive values mean the fipple/window system or added acoustic path must make the instrument behave longer than the visible labium-to-foot length. Negative values mean the source-observed body length is overlong for the nominal root under a simple open-pipe model; treat those as overlength blanks to trim or as evidence that the commercial key naming may not equal the all-closed root.</p><figure><object data="assets/drawings/ALG-A3-J3-body.svg" type="image/svg+xml" class="drawing"></object><figcaption>ALG-A3-J3-body</figcaption></figure>
+<figure><object data="assets/drawings/ALG-AS3-J2-body.svg" type="image/svg+xml" class="drawing"></object><figcaption>ALG-AS3-J2-body</figcaption></figure>
+<figure><object data="assets/drawings/ALG-AS3-SOLID-body.svg" type="image/svg+xml" class="drawing"></object><figcaption>ALG-AS3-SOLID-body</figcaption></figure>
+<figure><object data="assets/drawings/ALG-B3-SOLID-body.svg" type="image/svg+xml" class="drawing"></object><figcaption>ALG-B3-SOLID-body</figcaption></figure>
+<figure><object data="assets/drawings/KAV-A3-5H-body.svg" type="image/svg+xml" class="drawing"></object><figcaption>KAV-A3-5H-body</figcaption></figure>
+<figure><object data="assets/drawings/KAV-A3-7H-body.svg" type="image/svg+xml" class="drawing"></object><figcaption>KAV-A3-7H-body</figcaption></figure>
+<figure><object data="assets/drawings/KAV-AS3-7H-body.svg" type="image/svg+xml" class="drawing"></object><figcaption>KAV-AS3-7H-body</figcaption></figure>
+<figure><object data="assets/drawings/KAV-B3-5H-body.svg" type="image/svg+xml" class="drawing"></object><figcaption>KAV-B3-5H-body</figcaption></figure>
+<figure><object data="assets/drawings/KAV-B3-7H-body.svg" type="image/svg+xml" class="drawing"></object><figcaption>KAV-B3-7H-body</figcaption></figure>
+<figure><object data="assets/drawings/KAV-C4-5H-body.svg" type="image/svg+xml" class="drawing"></object><figcaption>KAV-C4-5H-body</figcaption></figure>
+<figure><object data="assets/drawings/KAV-GS3-5H-body.svg" type="image/svg+xml" class="drawing"></object><figcaption>KAV-GS3-5H-body</figcaption></figure>
+<figure><object data="assets/drawings/alghosazi-hole-layout.svg" type="image/svg+xml" class="drawing"></object><figcaption>alghosazi-hole-layout</figcaption></figure>
+<figure><object data="assets/drawings/double-drone-layout.svg" type="image/svg+xml" class="drawing"></object><figcaption>double-drone-layout</figcaption></figure>
+<figure><object data="assets/drawings/family-overview.svg" type="image/svg+xml" class="drawing"></object><figcaption>family-overview</figcaption></figure>
+<figure><object data="assets/drawings/fipple-head-section.svg" type="image/svg+xml" class="drawing"></object><figcaption>fipple-head-section</figcaption></figure>
+<figure><object data="assets/drawings/kaval-hole-layout.svg" type="image/svg+xml" class="drawing"></object><figcaption>kaval-hole-layout</figcaption></figure>
+<figure><object data="assets/drawings/two-piece-joint.svg" type="image/svg+xml" class="drawing"></object><figcaption>two-piece-joint</figcaption></figure></section>
+<section><h2>The build</h2><h2>Assembly Manual</h2>
+<h3>Safety And Setup</h3>
+<ul><li>Wear eye and lung protection when drilling, routing, sanding, or turning.</li><li>Do not route a long round blank without a stable V-block or split-blank fixture.</li><li>Keep the splitting edge protected until final voicing.</li><li>Mark the labium datum, foot datum, bore centerline, and back thumb-hole line before any irreversible cut.</li></ul>
+<h3>Prototype Ladder</h3>
+<h3>P0: Fipple Head Tile</h3>
+<p>1. Cut a 4 in scrap block with the selected bore diameter or a half-bore test channel.
+2. Cut the end mouth inlet.
+3. Fit a removable flue plug with 0.033, 0.038, and 0.045 in shim trials.
+4. Cut a side true sound window and splitting edge.
+5. Blow through the end inlet and record which plug/window combination speaks cleanly.
+6. Do not build a full flute until this tile produces stable tone.</p>
+<h3>P1: First Kaval Body</h3>
+<p>1. Select `KAV-A3-5H`.
+2. Mill the blank overlength by at least 2 in.
+3. Split the blank, route the bore halves and registration pin holes, or deep-bore the solid blank after proving setup on scrap.
+4. Create the fipple head and removable plug.
+5. Prove the root tone with no finger holes.
+6. Trim the foot to bring the all-closed root toward A3.
+7. Transfer hole positions from `kaval-hole-schedule.csv`.
+8. Drill each hole undersized.
+9. Tune holes from the foot upward by reaming slowly.
+10. Record every before/after pitch in `validation.csv`.</p>
+<h3>P1: First Alghosazi Body</h3>
+<p>1. Select `ALG-AS3-J2`.
+2. Build as a solid body first if joint risk feels high; otherwise cut the two-piece joint after the bore is proven.
+3. Mark the rear thumb-hole line before drilling.
+4. Drill the thumb hole undersized and validate reach with the actual player grip.
+5. Tune the primary sequence and record whether the scale feels musically right.</p>
+<h3>P2: Jointed Version</h3>
+<p>1. Cut the body overlength and prove tone before final jointing.
+2. Locate the joint away from holes and away from the fipple head.
+3. Turn tenon and socket with a 1.25 in engagement target.
+4. Add cork or waxed thread until the joint seals without force.
+5. Check bore step with a dowel, light, and feeler test.
+6. Re-test root and all holes after the joint is fitted.</p>
+<h3>P3: Double Drone</h3>
+<p>1. Build melody and drone tubes separately.
+2. Tune the melody side alone.
+3. Tune the drone side alone, including rear thumb vent if used.
+4. Join the bodies temporarily with clamps or bands before permanent collars.
+5. Test pressure sharing with both windways.
+6. Only then commit to a permanent double-body fixture or decorative binding.</p>
+<h3>Finishing</h3>
+<ul><li>Finish exterior after tuning.</li><li>Keep heavy oil, shellac, and wax out of the windway and splitting edge.</li><li>Seal bore lightly only after final measurements.</li><li>Recheck pitch after finish cure.</li></ul>
+<h3>Maintenance</h3>
+<ul><li>Let the bore dry after playing.</li><li>Remove the fipple plug only if the design uses a wax-sealed removable plug.</li><li>Do not store jointed bodies assembled under high humidity swings.</li></ul><p class="placeholder">No process photos in <code>images/</code>. Add at least one to populate this section.</p></section>
+<section><h2>The numbers</h2><h3>BOM</h3><table><thead><tr><th>item</th><th>assembly</th><th>part</th><th>qty</th><th>spec</th><th>make_buy</th><th>est_cost_usd</th><th>source_status</th><th>drawing_ref</th><th>notes</th></tr></thead><tbody><tr><td>BOM-001</td><td>all</td><td>Primary body blank</td><td>1 per flute</td><td>Straight-grain elder, locust, ash, maple, cherry, or walnut; length per family-spec plus 2 in trim</td><td>buy</td><td class="num">25-90</td><td>spec only</td><td>drawings/*-body.svg</td><td>Avoid runout through tone holes and joint tenons.</td></tr>
+<tr><td>BOM-002</td><td>head</td><td>Removable fipple/flue plug</td><td>1 plus 2 test plugs</td><td>Hard maple, pear, or dense straight-grain scrap; 0.033-0.045 in windway height trials</td><td>make</td><td class="num">5</td><td>shop scrap ok</td><td>drawings/fipple-head-section.svg</td><td>Wax-sealed removable plug makes voicing iteration survivable.</td></tr>
+<tr><td>BOM-003</td><td>joint</td><td>Cork sheet or natural cork rings</td><td>1 strip per joint</td><td>1/32 to 1/16 in cork, sanded to airtight slip fit</td><td>buy</td><td class="num">8-15</td><td>verify before purchase</td><td>drawings/two-piece-joint.svg</td><td>Use only on removable joints; permanent split bodies use glue.</td></tr>
+<tr><td>BOM-004</td><td>joint</td><td>Brass or hardwood ferrule sleeve</td><td>optional</td><td>Thin brass tube or hardwood collar sized to body OD</td><td>buy/make</td><td class="num">10-25</td><td>verify diameter</td><td>drawings/two-piece-joint.svg</td><td>Recommended for long A/A# bodies and double-flute assemblies.</td></tr>
+<tr><td>BOM-005</td><td>finish</td><td>Exterior finish</td><td class="num">1</td><td>Shellac, polymerized oil, or oil/wax; keep windway and bore lightly sealed only after tuning</td><td>buy</td><td class="num">10-30</td><td>shop stock likely</td><td>assembly-manual.md</td><td>No heavy finish on splitting edge.</td></tr>
+<tr><td>BOM-006</td><td>fixture</td><td>V-block and drilling template stock</td><td>1 set</td><td>MDF/plywood V-block, laser-cut paper/acrylic hole templates, 1/4 in dowel pins</td><td>make</td><td class="num">10-20</td><td>shop stock likely</td><td>cnc/setup-sheet.md</td><td>Template holes should be undersized pilots.</td></tr>
+<tr><td>BOM-007</td><td>validation</td><td>Tuning/measurement kit</td><td class="num">1</td><td>Chromatic tuner, thermometer/hygrometer, calipers, small round files, recording device</td><td>use shop kit</td><td class="num">0-60</td><td>existing kit likely</td><td>validation.csv</td><td>Record temperature with every tuning pass.</td></tr></tbody></table><h3>Cut list</h3><table><thead><tr><th>member_id</th><th>blank_part</th><th>material</th><th>qty</th><th>rough_size_in</th><th>final_size_in</th><th>grain_orientation</th><th>operation</th><th>yield_notes</th></tr></thead><tbody><tr><td>KAV-GS3-5H</td><td>main body blank</td><td>Locust or elder</td><td class="num">1</td><td>1.625 x 1.625 x 33.102</td><td>OD 1.375, bore 0.875, length 31.102</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>KAV-GS3-5H</td><td>joint tenon/socket allowance</td><td>Locust or elder plus cork/ferrule</td><td class="num">1</td><td>extra 2.5 in distributed around joint</td><td>1.250 in tenon engagement, 0.003-0.006 in cork-adjusted compression</td><td>same as body</td><td>turn tenon/socket after bore alignment is proven</td><td>Cut joint after body is acoustically proven on a sacrificial overlength blank.</td></tr>
+<tr><td>KAV-A3-5H</td><td>main body blank</td><td>Elder</td><td class="num">1</td><td>1.625 x 1.625 x 31.134</td><td>OD 1.375, bore 0.875, length 29.134</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>KAV-A3-5H</td><td>joint tenon/socket allowance</td><td>Elder plus cork/ferrule</td><td class="num">1</td><td>extra 2.5 in distributed around joint</td><td>1.250 in tenon engagement, 0.003-0.006 in cork-adjusted compression</td><td>same as body</td><td>turn tenon/socket after bore alignment is proven</td><td>Cut joint after body is acoustically proven on a sacrificial overlength blank.</td></tr>
+<tr><td>KAV-B3-5H</td><td>main body blank</td><td>Elder</td><td class="num">1</td><td>1.562 x 1.562 x 28.378</td><td>OD 1.312, bore 0.812, length 26.378</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>KAV-C4-5H</td><td>main body blank</td><td>Elder, maple, or cherry</td><td class="num">1</td><td>1.500 x 1.500 x 26.409</td><td>OD 1.250, bore 0.750, length 24.409</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>KAV-A3-7H</td><td>main body blank</td><td>Elder</td><td class="num">1</td><td>1.650 x 1.650 x 37.433</td><td>OD 1.400, bore 0.875, length 35.433</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>main body blank</td><td>Dogwood or elder</td><td class="num">1</td><td>1.650 x 1.650 x 35.465</td><td>OD 1.400, bore 0.875, length 33.465</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>joint tenon/socket allowance</td><td>Dogwood or elder plus cork/ferrule</td><td class="num">1</td><td>extra 2.5 in distributed around joint</td><td>1.250 in tenon engagement, 0.003-0.006 in cork-adjusted compression</td><td>same as body</td><td>turn tenon/socket after bore alignment is proven</td><td>Cut joint after body is acoustically proven on a sacrificial overlength blank.</td></tr>
+<tr><td>KAV-B3-7H</td><td>main body blank</td><td>Elder</td><td class="num">1</td><td>1.562 x 1.562 x 29.165</td><td>OD 1.312, bore 0.812, length 27.165</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>main body blank</td><td>Ash</td><td class="num">1</td><td>1.625 x 1.625 x 34.283</td><td>OD 1.375, bore 0.875, length 32.283</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>joint tenon/socket allowance</td><td>Ash plus cork/ferrule</td><td class="num">1</td><td>extra 2.5 in distributed around joint</td><td>1.250 in tenon engagement, 0.003-0.006 in cork-adjusted compression</td><td>same as body</td><td>turn tenon/socket after bore alignment is proven</td><td>Cut joint after body is acoustically proven on a sacrificial overlength blank.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>main body blank</td><td>Locust</td><td class="num">1</td><td>1.625 x 1.625 x 35.465</td><td>OD 1.375, bore 0.875, length 33.465</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>ALG-A3-J3</td><td>main body blank</td><td>Oak</td><td class="num">1</td><td>1.625 x 1.625 x 30.740</td><td>OD 1.375, bore 0.875, length 28.740</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr>
+<tr><td>ALG-A3-J3</td><td>joint tenon/socket allowance</td><td>Oak plus cork/ferrule</td><td class="num">1</td><td>extra 2.5 in distributed around joint</td><td>1.250 in tenon engagement, 0.003-0.006 in cork-adjusted compression</td><td>same as body</td><td>turn tenon/socket after bore alignment is proven</td><td>Cut joint after body is acoustically proven on a sacrificial overlength blank.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>main body blank</td><td>Elder or maple</td><td class="num">1</td><td>1.562 x 1.562 x 29.559</td><td>OD 1.312, bore 0.812, length 27.559</td><td>straight along bore axis</td><td>square, split or bore, route/drill, glue if split, turn/round, tune foot</td><td>Leave 2 in trim for root tuning and chuck/fixture allowance.</td></tr></tbody></table></section>
+<section><h2>Tuning &amp; validation</h2><table><thead><tr><th>member_id</th><th>test_id</th><th>target</th><th>target_value</th><th>measured_value</th><th>tolerance</th><th>environment</th><th>pass_fail</th><th>action</th></tr></thead><tbody><tr><td>KAV-GS3-5H</td><td>VAL-ROOT</td><td>root G#3</td><td>207.652 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>KAV-GS3-5H</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>233.082 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-GS3-5H</td><td>VAL-H2</td><td>hole 2 offset +3 st</td><td>246.942 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-GS3-5H</td><td>VAL-H3</td><td>hole 3 offset +6 st</td><td>293.665 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-GS3-5H</td><td>VAL-H4</td><td>hole 4 offset +7 st</td><td>311.127 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-GS3-5H</td><td>VAL-H5</td><td>hole 5 offset +8 st</td><td>329.628 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-5H</td><td>VAL-ROOT</td><td>root A3</td><td>220.000 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>KAV-A3-5H</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>246.942 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-5H</td><td>VAL-H2</td><td>hole 2 offset +3 st</td><td>261.626 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-5H</td><td>VAL-H3</td><td>hole 3 offset +6 st</td><td>311.127 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-5H</td><td>VAL-H4</td><td>hole 4 offset +7 st</td><td>329.628 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-5H</td><td>VAL-H5</td><td>hole 5 offset +8 st</td><td>349.228 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-5H</td><td>VAL-ROOT</td><td>root B3</td><td>246.942 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>KAV-B3-5H</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>277.183 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-5H</td><td>VAL-H2</td><td>hole 2 offset +3 st</td><td>293.665 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-5H</td><td>VAL-H3</td><td>hole 3 offset +6 st</td><td>349.228 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-5H</td><td>VAL-H4</td><td>hole 4 offset +7 st</td><td>369.994 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-5H</td><td>VAL-H5</td><td>hole 5 offset +8 st</td><td>391.995 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-C4-5H</td><td>VAL-ROOT</td><td>root C4</td><td>261.626 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>KAV-C4-5H</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>293.665 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-C4-5H</td><td>VAL-H2</td><td>hole 2 offset +3 st</td><td>311.127 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-C4-5H</td><td>VAL-H3</td><td>hole 3 offset +6 st</td><td>369.994 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-C4-5H</td><td>VAL-H4</td><td>hole 4 offset +7 st</td><td>391.995 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-C4-5H</td><td>VAL-H5</td><td>hole 5 offset +8 st</td><td>415.305 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-ROOT</td><td>root A3</td><td>220.000 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>246.942 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-H2</td><td>hole 2 offset +3 st</td><td>261.626 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-H3</td><td>hole 3 offset +4 st</td><td>277.183 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-H4</td><td>hole 4 offset +6 st</td><td>311.127 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-H5</td><td>hole 5 offset +7 st</td><td>329.628 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-H6</td><td>hole 6 offset +8 st</td><td>349.228 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-A3-7H</td><td>VAL-H7</td><td>hole 7 offset +9 st</td><td>369.994 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-ROOT</td><td>root A#3</td><td>233.082 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>261.626 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-H2</td><td>hole 2 offset +3 st</td><td>277.183 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-H3</td><td>hole 3 offset +4 st</td><td>293.665 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-H4</td><td>hole 4 offset +6 st</td><td>329.628 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-H5</td><td>hole 5 offset +7 st</td><td>349.228 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-H6</td><td>hole 6 offset +8 st</td><td>369.994 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-AS3-7H</td><td>VAL-H7</td><td>hole 7 offset +9 st</td><td>391.995 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-ROOT</td><td>root B3</td><td>246.942 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>277.183 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-H2</td><td>hole 2 offset +3 st</td><td>293.665 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-H3</td><td>hole 3 offset +4 st</td><td>311.127 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-H4</td><td>hole 4 offset +6 st</td><td>349.228 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-H5</td><td>hole 5 offset +7 st</td><td>369.994 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-H6</td><td>hole 6 offset +8 st</td><td>391.995 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>KAV-B3-7H</td><td>VAL-H7</td><td>hole 7 offset +9 st</td><td>415.305 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>VAL-ROOT</td><td>root A#3</td><td>233.082 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>261.626 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>VAL-H2</td><td>hole 2 offset +4 st</td><td>293.665 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>VAL-H3</td><td>hole 3 offset +7 st</td><td>349.228 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>VAL-H4</td><td>hole 4 offset +9 st</td><td>391.995 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>VAL-H5</td><td>hole 5 offset +11 st</td><td>440.0 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-J2</td><td>VAL-H6</td><td>hole 6 offset +12 st</td><td>466.164 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>VAL-ROOT</td><td>root A#3</td><td>233.082 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>261.626 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>VAL-H2</td><td>hole 2 offset +4 st</td><td>293.665 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>VAL-H3</td><td>hole 3 offset +7 st</td><td>349.228 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>VAL-H4</td><td>hole 4 offset +9 st</td><td>391.995 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>VAL-H5</td><td>hole 5 offset +11 st</td><td>440.0 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-AS3-SOLID</td><td>VAL-H6</td><td>hole 6 offset +12 st</td><td>466.164 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-A3-J3</td><td>VAL-ROOT</td><td>root A3</td><td>220.000 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>ALG-A3-J3</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>246.942 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-A3-J3</td><td>VAL-H2</td><td>hole 2 offset +4 st</td><td>277.183 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-A3-J3</td><td>VAL-H3</td><td>hole 3 offset +7 st</td><td>329.628 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-A3-J3</td><td>VAL-H4</td><td>hole 4 offset +9 st</td><td>369.994 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-A3-J3</td><td>VAL-H5</td><td>hole 5 offset +11 st</td><td>415.305 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-A3-J3</td><td>VAL-H6</td><td>hole 6 offset +12 st</td><td>440.0 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>VAL-ROOT</td><td>root B3</td><td>246.942 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Trim foot shorter to raise pitch; rebuild/extend foot if sharp.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>VAL-H1</td><td>hole 1 offset +2 st</td><td>277.183 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>VAL-H2</td><td>hole 2 offset +4 st</td><td>311.127 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>VAL-H3</td><td>hole 3 offset +7 st</td><td>369.994 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>VAL-H4</td><td>hole 4 offset +9 st</td><td>415.305 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>VAL-H5</td><td>hole 5 offset +11 st</td><td>466.164 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALG-B3-SOLID</td><td>VAL-H6</td><td>hole 6 offset +12 st</td><td>493.883 Hz</td><td></td><td>+/-25 cents P1, +/-10 cents P2</td><td>TBD temp/RH</td><td></td><td>Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.</td></tr>
+<tr><td>ALL</td><td>VAL-FIPPLE</td><td>clean attack and stable octave jump</td><td>no choking at normal breath</td><td></td><td>subjective plus recording</td><td>TBD temp/RH</td><td></td><td>Adjust windway height, splitting edge sharpness, and window length.</td></tr>
+<tr><td>DOUBLE</td><td>VAL-DRONE-BEAT</td><td>melody/drone pressure interaction</td><td>no severe stealing or beating unless intentional</td><td></td><td>recorded comparison</td><td>TBD temp/RH</td><td></td><td>Restrict windway, retune drone vent, or separate mouth inlets.</td></tr></tbody></table></section>
+<section><h2>Known risks</h2><h2>Risks</h2>
+<h3>Acoustic</h3>
+<ul><li>**Fipple/sound-window correction is unknown.** Test: build `P0-FIPPLE-HEAD`, record root prediction vs measured, and update `estimated_sound_window_correction_in`.</li><li>**Hole positions are first-pass proportional.** Test: drill undersized and record before/after cents for every hole in `validation.csv`.</li><li>**Double-drone windways may steal pressure from each other.** Test: record each windway alone and together; compare attack and cents drift.</li></ul>
+<h3>Structural</h3>
+<ul><li>**Long solid blanks can wander while drilling.** Test: bore scrap first and measure exit offset; use split-blank CNC if wander exceeds 0.050 in.</li><li>**Two-piece joints can leak or crack.** Test: vacuum/leak check and dry assembly force check before finishing.</li><li>**Splitting edge is fragile.** Test: inspect under magnification after each voicing change.</li></ul>
+<h3>Ergonomic</h3>
+<ul><li>**7-hole kaval lower holes may require base-of-finger coverage.** Test: paper wrap mockup before drilling final diameters.</li><li>**Alghosazi thumb hole may not fit all hands.** Test: mark with tape, play air-grip, then drill undersized.</li></ul>
+<h3>Supply</h3>
+<ul><li>**Elder and locust blanks may be hard to source in required lengths.** Test: verify supplier stock before committing scale/key; use ash/maple/cherry for prototypes.</li><li>**Ferrule dimensions may not match body OD.** Test: choose ferrule after body OD is turned, not before.</li></ul>
+<h3>Fit And Finish</h3>
+<ul><li>**Finish can clog the windway.** Test: mask windway and splitting edge; recheck attack after cure.</li><li>**Cork compression changes with humidity.** Test: assemble/disassemble after overnight humidity change and record fit.</li></ul></section>
+<section><h2>Family overview</h2><ul><li><a href="family/KAV-GS3-5H.html">KAV-GS3-5H — G#3</a></li><li><a href="family/KAV-A3-5H.html">KAV-A3-5H — A3</a></li><li><a href="family/KAV-B3-5H.html">KAV-B3-5H — B3</a></li><li><a href="family/KAV-C4-5H.html">KAV-C4-5H — C4</a></li><li><a href="family/KAV-A3-7H.html">KAV-A3-7H — A3</a></li><li><a href="family/KAV-AS3-7H.html">KAV-AS3-7H — A#3</a></li><li><a href="family/KAV-B3-7H.html">KAV-B3-7H — B3</a></li><li><a href="family/ALG-AS3-J2.html">ALG-AS3-J2 — A#3</a></li><li><a href="family/ALG-AS3-SOLID.html">ALG-AS3-SOLID — A#3</a></li><li><a href="family/ALG-A3-J3.html">ALG-A3-J3 — A3</a></li><li><a href="family/ALG-B3-SOLID.html">ALG-B3-SOLID — B3</a></li></ul></section>
+<section><h2>Resources</h2><ul><li><a href="../README.md">Project README</a></li><li><a href="../capstone-deck.pptx">Capstone deck (.pptx)</a></li><li><a href="../print-packet.pdf">Printable shop packet (.pdf)</a></li><li><a href="https://github.com/tonykoop">Tony's GitHub</a></li></ul></section>
+</main>
+<footer>
+Built by Tony Koop · CC-BY 4.0 · <a href="https://github.com/tonykoop">github.com/tonykoop</a>
+</footer>
+</body>
+</html>
