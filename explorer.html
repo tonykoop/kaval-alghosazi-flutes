@@ -382,7 +382,7 @@ mark.hit{background:var(--gold);color:var(--ink);
 
   <div class="status-row">
     <div class="status-label">Status</div>
-    <div class="status-val"><span class="pill pill-private">Private review</span>&nbsp;&nbsp;</div>
+    <div class="status-val"><span class="pill pill-private">Private review</span>&nbsp;&nbsp;<span class="pill pill-gate">L1 packet</span></div>
   </div>
   <div class="status-row">
     <div class="status-label">Family</div>
@@ -390,7 +390,7 @@ mark.hit{background:var(--gold);color:var(--ink);
   </div>
   <div class="status-row">
     <div class="status-label">Release gates</div>
-    <div class="status-val"><ul class="gates"><li class="gate"><span class="gate-dot ok"></span><span class="gate-label">No open gates declared in manifest.</span></li></ul></div>
+    <div class="status-val"><ul class="gates"><li class="gate"><span class="gate-dot block"></span><span class="gate-label">P0 fipple-head geometry is not measured yet. Keep hole locations and CAD at starter status until <code>docs/p0-fipple-head-measurement.md</code> and <code>sound-window-correction-log.csv</code> contain measured evidence.</span></li></ul></div>
   </div>
 </article>
 
@@ -398,6 +398,7 @@ mark.hit{background:var(--gold);color:var(--ink);
   <h1><span class="eyebrow">01 · Overview</span>Kaval + Alghosazi Fipple Flutes Capstone</h1>
 
   <p>This explorer is the studio-facing build packet for <strong>r27-hank-kaval-alghosazi-flutes</strong>. Sections below cover design, BOM, validation, the interactive acoustic model, risks, capstone deliverables, and learn-to-play material.</p>
+  <div class="callout warn"><span class="lab">Round 30 measurement gate</span><p>The packet remains <strong>L1_packet</strong>. The fipple/sound-window correction is unknown until a P0 head tile or matching unholed body is measured and the correction is back-solved.</p></div>
 
 
 </section>
@@ -409,6 +410,8 @@ mark.hit{background:var(--gold);color:var(--ink);
 <div class="file"><div class="file-head" onclick="toggleFile(this)"><span class="icon">▶</span><span class="file-name">bom.csv</span><span class="file-type">CSV</span><span class="file-desc">Dimension or registry table</span><span class="file-actions"><a href="bom.csv" target="_blank" rel="noopener">Open</a></span></div><div class="file-body" data-csv="bom.csv"></div></div>
 <div class="file"><div class="file-head" onclick="toggleFile(this)"><span class="icon">▶</span><span class="file-name">cut-list.csv</span><span class="file-type">CSV</span><span class="file-desc">Dimension or registry table</span><span class="file-actions"><a href="cut-list.csv" target="_blank" rel="noopener">Open</a></span></div><div class="file-body" data-csv="cut-list.csv"></div></div>
 <div class="file"><div class="file-head" onclick="toggleFile(this)"><span class="icon">▶</span><span class="file-name">double-drone-spec.csv</span><span class="file-type">CSV</span><span class="file-desc">Dimension or registry table</span><span class="file-actions"><a href="double-drone-spec.csv" target="_blank" rel="noopener">Open</a></span></div><div class="file-body" data-csv="double-drone-spec.csv"></div></div>
+<div class="file open"><div class="file-head" onclick="toggleFile(this)"><span class="icon">▶</span><span class="file-name">docs/p0-fipple-head-measurement.md</span><span class="file-type">MD</span><span class="file-desc">P0 fipple-head build and measurement procedure</span><span class="file-actions"><a href="docs/p0-fipple-head-measurement.md" target="_blank" rel="noopener">Open</a></span></div><div class="file-body" data-md="docs/p0-fipple-head-measurement.md"></div></div>
+<div class="file open"><div class="file-head" onclick="toggleFile(this)"><span class="icon">▶</span><span class="file-name">sound-window-correction-log.csv</span><span class="file-type">CSV</span><span class="file-desc">Back-solve log for measured sound-window correction</span><span class="file-actions"><a href="sound-window-correction-log.csv" target="_blank" rel="noopener">Open</a></span></div><div class="file-body" data-csv="sound-window-correction-log.csv"></div></div>
 <div class="cards"><div class="card"><div class="k">Workbook</div><div class="v">Kaval-Alghosazi-Design.xlsx<span class="sub">Kaval-Alghosazi-Design.xlsx</span></div><p style="margin-top:8px"><a href="Kaval-Alghosazi-Design.xlsx" target="_blank" rel="noopener">Open</a></p></div></div>
 </section>
 
@@ -439,6 +442,7 @@ mark.hit{background:var(--gold);color:var(--ink);
 <section id="validation" data-toc="Validation Gates" data-toc-group="Validate">
   <h1><span class="eyebrow">· Validation Gates</span>Validation Gates</h1>
 <div class="file open"><div class="file-head" onclick="toggleFile(this)"><span class="icon">▶</span><span class="file-name">validation.csv</span><span class="file-type">CSV</span><span class="file-desc">Checks · methods · tolerances · gates</span><span class="file-actions"><a href="validation.csv" target="_blank" rel="noopener">Open</a></span></div><div class="file-body" data-csv="validation.csv"></div></div>
+<div class="file open"><div class="file-head" onclick="toggleFile(this)"><span class="icon">▶</span><span class="file-name">validation-loop.csv</span><span class="file-type">CSV</span><span class="file-desc">Prototype validation loop with measurement-required gates</span><span class="file-actions"><a href="validation-loop.csv" target="_blank" rel="noopener">Open</a></span></div><div class="file-body" data-csv="validation-loop.csv"></div></div>
 </section>
 
 <section id="run-it" data-toc="Run It — Wolfram Cloud" data-toc-group="Validate">
