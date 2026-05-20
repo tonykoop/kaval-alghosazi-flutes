@@ -24,7 +24,7 @@ Start with these prototypes:
 | `Kaval-Alghosazi-Design.xlsx` | Parametric workbook: family spec, formulas, hole schedules, fipple inputs. |
 | `design.md` | Acoustic model, cultural/source notes, assumptions, and build intent. |
 | `family-spec.csv` | Row-per-member design table used by drawing/CAD generators. |
-| `hole-schedule.csv` | First-pass hole positions measured from labium and foot. |
+| `hole-schedule.csv` | First-pass hole positions computed from labium-to-foot length (pre-P0; rerun after measured sound-window correction). |
 | `bom.csv`, `sourcing.csv`, `cut-list.csv` | Procurement and stock prep. |
 | `assembly-manual.md` | Shop sequence from fipple tile through tuning. |
 | `docs/p0-fipple-head-measurement.md` | P0 fipple-head build and measurement procedure. |
