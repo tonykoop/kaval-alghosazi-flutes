@@ -25,6 +25,7 @@
 ## Assumptions Needing Prototype Data
 
 - Exact fipple sound-window end correction.
+- Measured P0 windway/window/splitting-edge setting that speaks without choking.
 - Final hole diameters and undercutting.
 - Alghosazi mode preference after listening/playing.
 - Joint effect on tuning and response.

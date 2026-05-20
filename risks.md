@@ -2,7 +2,7 @@
 
 ## Acoustic
 
-- **Fipple/sound-window correction is unknown.** Test: build `P0-FIPPLE-HEAD`, record root prediction vs measured, and update `estimated_sound_window_correction_in`.
+- **Fipple/sound-window correction is unknown.** Test: build `P0-FIPPLE-HEAD`, record root prediction vs measured, and update `sound-window-correction-log.csv` before trusting final hole locations.
 - **Hole positions are first-pass proportional.** Test: drill undersized and record before/after cents for every hole in `validation.csv`.
 - **Double-drone windways may steal pressure from each other.** Test: record each windway alone and together; compare attack and cents drift.
 

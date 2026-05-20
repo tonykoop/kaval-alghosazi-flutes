@@ -75,5 +75,7 @@ ALG-B3-SOLID,VAL-H3,hole 3 offset +7 st,369.994 Hz,,"+/-25 cents P1, +/-10 cents
 ALG-B3-SOLID,VAL-H4,hole 4 offset +9 st,415.305 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
 ALG-B3-SOLID,VAL-H5,hole 5 offset +11 st,466.164 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
 ALG-B3-SOLID,VAL-H6,hole 6 offset +12 st,493.883 Hz,,"+/-25 cents P1, +/-10 cents P2",TBD temp/RH,,Enlarge/undercut slowly to raise; wax or bushing recovery if sharp.
+P0-FIPPLE-HEAD,VAL-P0-SPEAK,head tile speaks before full body,stable tone with 0.033/0.038/0.045 in plug trials,,measurement_required,TBD temp/RH,,"Record plug shim, window length/width, splitting-edge offset, and tuner capture in docs/p0-fipple-head-measurement.md."
+P0-FIPPLE-HEAD,VAL-SW-CORR,measured sound-window correction,L_eff(measured root) - labium_to_foot - foot_end_correction,,measurement_required,TBD temp/RH,,Add the back-solved correction to sound-window-correction-log.csv before promoting hole positions beyond starter status.
 ALL,VAL-FIPPLE,clean attack and stable octave jump,no choking at normal breath,,subjective plus recording,TBD temp/RH,,"Adjust windway height, splitting edge sharpness, and window length."
 DOUBLE,VAL-DRONE-BEAT,melody/drone pressure interaction,no severe stealing or beating unless intentional,,recorded comparison,TBD temp/RH,,"Restrict windway, retune drone vent, or separate mouth inlets."

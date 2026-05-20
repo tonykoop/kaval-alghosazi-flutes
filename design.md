@@ -49,6 +49,16 @@ The hole schedule is intentionally a **starter drill schedule**. The builder dri
 
 `family-spec.csv` includes `estimated_sound_window_correction_in`. Positive values mean the fipple/window system or added acoustic path must make the instrument behave longer than the visible labium-to-foot length. Negative values mean the source-observed body length is overlong for the nominal root under a simple open-pipe model; treat those as overlength blanks to trim or as evidence that the commercial key naming may not equal the all-closed root.
 
+The first-pass schedules do not yet include a measured sound-window correction. Back-solve it after P0 with:
+
+```text
+L_eff_measured = c / (2 * measured_root_hz)
+sound_window_correction = L_eff_measured - labium_to_foot - foot_end_correction
+foot_end_correction ~= 0.6 * bore_radius
+```
+
+Record the result in `sound-window-correction-log.csv`. Only then update `Kaval-Alghosazi-Design.xlsx`, `family-spec.csv`, and the hole schedules.
+
 ## Scale Plans
 
 ### 5-Hole Fipple Kaval
@@ -99,6 +109,12 @@ Starter dimensions:
 | Splitting edge offset KPI | 0.005-0.015 in | 0.005-0.015 in | Borrowed from Tony's fujara canary, not a final law. |
 | Plug fit | wax-sealed slip | wax-sealed slip | Removable until final voicing. |
 
+### P0 Measurement Loop
+
+Build `P0-FIPPLE-HEAD` before a full flute body. Use scrap stock or a short half-bore test channel matching the selected bore, cut the end mouth inlet, test removable plug shims at 0.033, 0.038, and 0.045 in, and vary only one window or splitting-edge parameter between trials.
+
+For each speaking trial, log the measured windway height, window length, window width, splitting-edge offset, blow-pressure note, temperature/RH, measured root pitch, and whether the tone chokes, overblows, or stabilizes. The geometry stays inferred until that log exists.
+
 ## Two-Piece And Double Options
 
 The two-piece option is a **shop convenience and tuning risk**, not a decorative afterthought. Use it only after a solid prototype speaks well.
@@ -127,11 +143,12 @@ See `family-spec.csv` for the source of truth. The core starter members are:
 Preferred path for the first two prototypes:
 
 1. Make a removable fipple-head test tile from scrap.
-2. Build a split-blank body so the bore, windway, and window are visible and correctable.
-3. Glue and turn only after the fipple speaks.
-4. Drill holes undersized from a laser/CNC template or V-block setup.
-5. Tune root first, then holes from foot upward.
-6. Record measurements in `validation.csv` and update the next prototype.
+2. Record the speaking head settings and back-solve the sound-window correction in `sound-window-correction-log.csv`.
+3. Build a split-blank body so the bore, windway, and window are visible and correctable.
+4. Glue and turn only after the fipple speaks.
+5. Drill holes undersized from a laser/CNC template or V-block setup.
+6. Tune root first, then holes from foot upward.
+7. Record measurements in `validation.csv` and `validation-loop.csv`, then update the next prototype.
 
 Deep-bore drilling is allowed for later solid-body builds. Use the skill reference `headstock-driven-deep-bore-drilling.md` before attempting a long solid blank.
 
@@ -143,3 +160,4 @@ Deep-bore drilling is allowed for later solid-body builds. Use the skill referen
 - Alghosazi tuning is a starter interpretation based on contemporary Anasazi-tuned six-hole practice.
 - Tone hole positions ignore final hole-diameter perturbation until measured prototype data exists.
 - The fipple head is Tony's derived design and must be validated by physical tests.
+- The P0 correction is unknown until measured; do not promote this packet above `L1_packet` from source observations alone.
