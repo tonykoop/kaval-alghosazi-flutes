@@ -1,6 +1,6 @@
 # Kaval + Alghosazi Fipple Flutes
 
-This repository is a build-ready design packet for two related long fipple flutes:
+This repository is a prototype design packet for two related long fipple flutes. It is not build-ready for a final instrument until the P0 fipple-head and sound-window correction measurements below are recorded:
 
 - a **Moldavian/Romanian-style fipple kaval** family, including 5-hole, 7-hole, two-piece, and double-drone options;
 - a **fipple Alghosazi** family inspired by the Anasazi/Basketmaker long-flute lineage, with an easier fipple head and a rear thumb hole.
@@ -24,9 +24,12 @@ Start with these prototypes:
 | `Kaval-Alghosazi-Design.xlsx` | Parametric workbook: family spec, formulas, hole schedules, fipple inputs. |
 | `design.md` | Acoustic model, cultural/source notes, assumptions, and build intent. |
 | `family-spec.csv` | Row-per-member design table used by drawing/CAD generators. |
-| `hole-schedule.csv` | First-pass hole positions measured from labium and foot. |
+| `hole-schedule.csv` | First-pass hole positions computed from labium-to-foot length (pre-P0; rerun after measured sound-window correction). |
 | `bom.csv`, `sourcing.csv`, `cut-list.csv` | Procurement and stock prep. |
 | `assembly-manual.md` | Shop sequence from fipple tile through tuning. |
+| `docs/p0-fipple-head-measurement.md` | P0 fipple-head build and measurement procedure. |
+| `sound-window-correction-log.csv` | Back-solve log for the measured fipple/sound-window correction. |
+| `validation-loop.csv` | Prototype validation-loop scaffold with measurement-required gates. |
 | `drawings/` | SVG manufacturing drawings and head/joint details. |
 | `cad/` | OpenSCAD and SolidWorks starter handoff files. |
 | `cnc/` | v4.2 operation plan and setup sheet. |
@@ -36,6 +39,8 @@ Start with these prototypes:
 ## Status
 
 This is a first-pass engineering packet. Dimensions are parametric and source-backed where possible, but the fipple/sound-window correction is marked as a measured-prototype variable, not a borrowed NAF K2 correction.
+
+Current readiness is `L1_packet`: fabrication drawings and schedules are starter artifacts, while the fipple/head correction, final hole locations, and production readiness remain measurement-required.
 
 ## Attribution
 

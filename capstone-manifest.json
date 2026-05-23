@@ -1,7 +1,20 @@
 {
-  "packet_dir": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes",
+  "packet_dir": ".",
   "title": "Kaval + Alghosazi Fipple Flutes Capstone",
-  "generated": "2026-05-05",
+  "generated": "2026-05-18",
+  "readiness": "L1_packet",
+  "release_gates": [
+    {
+      "gate": "P0 fipple-head measurement",
+      "status": "measurement_required",
+      "artifact": "docs/p0-fipple-head-measurement.md"
+    },
+    {
+      "gate": "Sound-window correction back-solve",
+      "status": "measurement_required",
+      "artifact": "sound-window-correction-log.csv"
+    }
+  ],
   "files_included": [
     "design.md",
     "bom.csv",
@@ -10,6 +23,9 @@
     "drawing-brief.md",
     "assembly-manual.md",
     "validation.csv",
+    "validation-loop.csv",
+    "docs/p0-fipple-head-measurement.md",
+    "sound-window-correction-log.csv",
     "supplier-rfq.md",
     "visual-bom-brief.md",
     "wolfram-starter.wl",
@@ -24,15 +40,17 @@
     "sources.md"
   ],
   "outputs": {
-    "capstone_deck_markdown": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes/capstone-deck.md",
-    "capstone_deck_pptx": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes/capstone-deck.pptx",
-    "print_packet_markdown": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes/print-packet.md",
-    "print_packet_html": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes/print-packet.html",
-    "print_packet_pdf": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes/print-packet.pdf",
-    "print_packet_docx": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes/print-packet.docx",
-    "bom_build_method_docx": "/mnt/c/Users/Tony/Documents/GitHub/kaval-alghosazi-flutes/Kaval-Alghosazi-BOM-Build-Method.docx"
+    "capstone_deck_markdown": "capstone-deck.md",
+    "capstone_deck_pptx": "capstone-deck.pptx",
+    "print_packet_markdown": "print-packet.md",
+    "print_packet_html": "print-packet.html",
+    "print_packet_pdf": "print-packet.pdf",
+    "print_packet_docx": "print-packet.docx",
+    "bom_build_method_docx": "Kaval-Alghosazi-BOM-Build-Method.docx",
+    "explorer": "explorer.html"
   },
   "notes": [
+    "Round 30 keeps readiness at L1_packet until P0 measured geometry and sound-window correction evidence exist.",
     "Use the HTML file for browser print-to-PDF when no PDF tooling is available.",
     "PPTX/DOCX were produced with pandoc; PDF was produced with the local simple PDF writer."
   ]

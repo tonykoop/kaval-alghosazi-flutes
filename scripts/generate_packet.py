@@ -220,7 +220,7 @@ def hole_schedule(member: Member) -> list[dict[str, object]]:
             "starter_drill_in": f"{drill:.4f}",
             "target_final_dia_in": f"{final:.4f}",
             "orientation": "back thumb" if member.instrument == "Fipple Alghosazi" and idx == len(member.hole_offsets) else "front",
-            "formula": "x_from_labium = labium_to_foot * 2^(-offset_st/12); tune upward by enlarging",
+            "formula": "starter pre-P0: x_from_labium = labium_to_foot * 2^(-offset_st/12); rerun after measured sound-window correction",
         })
     return rows
 
@@ -508,6 +508,22 @@ def write_packet_docs() -> None:
             })
     validation_rows.extend([
         {
+            "member_id": "P0-FIPPLE-HEAD", "test_id": "VAL-P0-SPEAK",
+            "target": "head tile speaks before full body",
+            "target_value": "stable tone with 0.033/0.038/0.045 in plug trials",
+            "measured_value": "", "tolerance": "measurement_required",
+            "environment": "TBD temp/RH", "pass_fail": "",
+            "action": "Record plug shim, window length/width, splitting-edge offset, and tuner capture in docs/p0-fipple-head-measurement.md.",
+        },
+        {
+            "member_id": "P0-FIPPLE-HEAD", "test_id": "VAL-SW-CORR",
+            "target": "measured sound-window correction",
+            "target_value": "L_eff(measured root) - labium_to_foot - foot_end_correction",
+            "measured_value": "", "tolerance": "measurement_required",
+            "environment": "TBD temp/RH", "pass_fail": "",
+            "action": "Add the back-solved correction to sound-window-correction-log.csv before promoting hole positions beyond starter status.",
+        },
+        {
             "member_id": "ALL", "test_id": "VAL-FIPPLE",
             "target": "clean attack and stable octave jump", "target_value": "no choking at normal breath",
             "measured_value": "", "tolerance": "subjective plus recording",
@@ -526,6 +542,68 @@ def write_packet_docs() -> None:
         "validation.csv", validation_rows,
         ["member_id", "test_id", "target", "target_value", "measured_value", "tolerance", "environment", "pass_fail", "action"],
     )
+    write_csv(
+        "sound-window-correction-log.csv",
+        [
+            {
+                "iteration": "P0",
+                "member_id": "P0-FIPPLE-HEAD",
+                "reference_body": "KAV-A3-5H unholed test body or matching half-bore tile",
+                "labium_to_foot_in": "TBD",
+                "bore_id_in": "0.8750",
+                "foot_end_correction_in": "0.2625",
+                "target_root_hz": "220.000",
+                "measured_root_hz": "TBD",
+                "environment": "TBD temp/RH",
+                "backsolve_formula": "L_eff = c/(2*measured_root_hz); sound_window_correction = L_eff - labium_to_foot - foot_end_correction",
+                "measured_sound_window_correction_in": "TBD",
+                "status": "measurement_required",
+                "next_action": "Build P0, capture tuner result, then update workbook/family-spec/hole schedules if the correction shifts holes by more than 0.100 in.",
+            }
+        ],
+        [
+            "iteration", "member_id", "reference_body", "labium_to_foot_in",
+            "bore_id_in", "foot_end_correction_in", "target_root_hz",
+            "measured_root_hz", "environment", "backsolve_formula",
+            "measured_sound_window_correction_in", "status", "next_action",
+        ],
+    )
+    write_csv(
+        "validation-loop.csv",
+        [
+            {
+                "check_id": "vl001",
+                "packet_artifact": "docs/p0-fipple-head-measurement.md",
+                "readiness_before": "L1_packet",
+                "prediction_source": "fujara-style head starter dimensions",
+                "target": "P0 head tile speaks cleanly with recorded windway/window setup",
+                "tolerance": "measurement_required",
+                "method": "Build scrap P0 tile; test three plug shims; record audio/tuner and physical settings.",
+                "measured_result": "TBD",
+                "status": "measurement_required",
+                "next_action": "Do not commit full-body hole schedule until one speaking head setup is logged.",
+                "evidence": "future tuner capture, photo set, and shop log",
+            },
+            {
+                "check_id": "vl002",
+                "packet_artifact": "sound-window-correction-log.csv",
+                "readiness_before": "L1_packet",
+                "prediction_source": "open-open model plus source-observed body lengths",
+                "target": "Back-solved sound-window correction for KAV-A3-5H or matched P0 body",
+                "tolerance": "measurement_required",
+                "method": "Measure unholed root, compute L_eff=c/(2f), subtract labium-to-foot and foot end correction.",
+                "measured_result": "TBD",
+                "status": "measurement_required",
+                "next_action": "Update workbook, family-spec, and hole schedules only after this row has measured data.",
+                "evidence": "future sound-window-correction-log.csv measured row",
+            },
+        ],
+        [
+            "check_id", "packet_artifact", "readiness_before", "prediction_source",
+            "target", "tolerance", "method", "measured_result", "status",
+            "next_action", "evidence",
+        ],
+    )
 
     write_text("README.md", README_MD)
     write_text("design.md", DESIGN_MD)
@@ -543,6 +621,7 @@ def write_packet_docs() -> None:
     write_text("cad/kaval_alghosazi_body.scad", OPENSCAD_SCAD)
     write_text("docs/repo-structure.md", REPO_STRUCTURE_MD)
     write_text("docs/v4.2-validation-notes.md", VALIDATION_NOTES_MD)
+    write_text("docs/p0-fipple-head-measurement.md", P0_FIPPLE_HEAD_MEASUREMENT_MD)
     write_text("LICENSE", LICENSE_MD)
     write_text(".gitignore", "*.tmp\n*.bak\n.~lock.*\n.DS_Store\n__pycache__/\n")
 
@@ -550,7 +629,7 @@ def write_packet_docs() -> None:
 README_MD = """
 # Kaval + Alghosazi Fipple Flutes
 
-This repository is a build-ready design packet for two related long fipple flutes:
+This repository is a prototype design packet for two related long fipple flutes. It is not build-ready for a final instrument until the P0 fipple-head and sound-window correction measurements below are recorded:
 
 - a **Moldavian/Romanian-style fipple kaval** family, including 5-hole, 7-hole, two-piece, and double-drone options;
 - a **fipple Alghosazi** family inspired by the Anasazi/Basketmaker long-flute lineage, with an easier fipple head and a rear thumb hole.
@@ -577,6 +656,9 @@ Start with these prototypes:
 | `hole-schedule.csv` | First-pass hole positions measured from labium and foot. |
 | `bom.csv`, `sourcing.csv`, `cut-list.csv` | Procurement and stock prep. |
 | `assembly-manual.md` | Shop sequence from fipple tile through tuning. |
+| `docs/p0-fipple-head-measurement.md` | P0 fipple-head build and measurement procedure. |
+| `sound-window-correction-log.csv` | Back-solve log for the measured fipple/sound-window correction. |
+| `validation-loop.csv` | Prototype validation-loop scaffold with measurement-required gates. |
 | `drawings/` | SVG manufacturing drawings and head/joint details. |
 | `cad/` | OpenSCAD and SolidWorks starter handoff files. |
 | `cnc/` | v4.2 operation plan and setup sheet. |
@@ -586,6 +668,8 @@ Start with these prototypes:
 ## Status
 
 This is a first-pass engineering packet. Dimensions are parametric and source-backed where possible, but the fipple/sound-window correction is marked as a measured-prototype variable, not a borrowed NAF K2 correction.
+
+Current readiness is `L1_packet`: fabrication drawings and schedules are starter artifacts, while the fipple/head correction, final hole locations, and production readiness remain measurement-required.
 
 ## Attribution
 
@@ -645,6 +729,16 @@ The hole schedule is intentionally a **starter drill schedule**. The builder dri
 
 `family-spec.csv` includes `estimated_sound_window_correction_in`. Positive values mean the fipple/window system or added acoustic path must make the instrument behave longer than the visible labium-to-foot length. Negative values mean the source-observed body length is overlong for the nominal root under a simple open-pipe model; treat those as overlength blanks to trim or as evidence that the commercial key naming may not equal the all-closed root.
 
+The first-pass schedules do not yet include a measured sound-window correction. Back-solve it after P0 with:
+
+```text
+L_eff_measured = c / (2 * measured_root_hz)
+sound_window_correction = L_eff_measured - labium_to_foot - foot_end_correction
+foot_end_correction ~= 0.6 * bore_radius
+```
+
+Record the result in `sound-window-correction-log.csv`. Only then update `Kaval-Alghosazi-Design.xlsx`, `family-spec.csv`, and the hole schedules.
+
 ## Scale Plans
 
 ### 5-Hole Fipple Kaval
@@ -695,6 +789,12 @@ Starter dimensions:
 | Splitting edge offset KPI | 0.005-0.015 in | 0.005-0.015 in | Borrowed from Tony's fujara canary, not a final law. |
 | Plug fit | wax-sealed slip | wax-sealed slip | Removable until final voicing. |
 
+### P0 Measurement Loop
+
+Build `P0-FIPPLE-HEAD` before a full flute body. Use scrap stock or a short half-bore test channel matching the selected bore, cut the end mouth inlet, test removable plug shims at 0.033, 0.038, and 0.045 in, and vary only one window or splitting-edge parameter between trials.
+
+For each speaking trial, log the measured windway height, window length, window width, splitting-edge offset, blow-pressure note, temperature/RH, measured root pitch, and whether the tone chokes, overblows, or stabilizes. The geometry stays inferred until that log exists.
+
 ## Two-Piece And Double Options
 
 The two-piece option is a **shop convenience and tuning risk**, not a decorative afterthought. Use it only after a solid prototype speaks well.
@@ -723,11 +823,12 @@ See `family-spec.csv` for the source of truth. The core starter members are:
 Preferred path for the first two prototypes:
 
 1. Make a removable fipple-head test tile from scrap.
-2. Build a split-blank body so the bore, windway, and window are visible and correctable.
-3. Glue and turn only after the fipple speaks.
-4. Drill holes undersized from a laser/CNC template or V-block setup.
-5. Tune root first, then holes from foot upward.
-6. Record measurements in `validation.csv` and update the next prototype.
+2. Record the speaking head settings and back-solve the sound-window correction in `sound-window-correction-log.csv`.
+3. Build a split-blank body so the bore, windway, and window are visible and correctable.
+4. Glue and turn only after the fipple speaks.
+5. Drill holes undersized from a laser/CNC template or V-block setup.
+6. Tune root first, then holes from foot upward.
+7. Record measurements in `validation.csv` and `validation-loop.csv`, then update the next prototype.
 
 Deep-bore drilling is allowed for later solid-body builds. Use the skill reference `headstock-driven-deep-bore-drilling.md` before attempting a long solid blank.
 
@@ -739,6 +840,7 @@ Deep-bore drilling is allowed for later solid-body builds. Use the skill referen
 - Alghosazi tuning is a starter interpretation based on contemporary Anasazi-tuned six-hole practice.
 - Tone hole positions ignore final hole-diameter perturbation until measured prototype data exists.
 - The fipple head is Tony's derived design and must be validated by physical tests.
+- The P0 correction is unknown until measured; do not promote this packet above `L1_packet` from source observations alone.
 """
 
 
@@ -898,7 +1000,7 @@ RISKS_MD = """
 
 ## Acoustic
 
-- **Fipple/sound-window correction is unknown.** Test: build `P0-FIPPLE-HEAD`, record root prediction vs measured, and update `estimated_sound_window_correction_in`.
+- **Fipple/sound-window correction is unknown.** Test: build `P0-FIPPLE-HEAD`, record root prediction vs measured, and update `sound-window-correction-log.csv` before trusting final hole locations.
 - **Hole positions are first-pass proportional.** Test: drill undersized and record before/after cents for every hole in `validation.csv`.
 - **Double-drone windways may steal pressure from each other.** Test: record each windway alone and together; compare attack and cents drift.
 
@@ -990,6 +1092,7 @@ SOURCES_MD = """
 ## Assumptions Needing Prototype Data
 
 - Exact fipple sound-window end correction.
+- Measured P0 windway/window/splitting-edge setting that speaks without choking.
 - Final hole diameters and undercutting.
 - Alghosazi mode preference after listening/playing.
 - Joint effect on tuning and response.
@@ -1130,13 +1233,75 @@ VALIDATION_NOTES_MD = """
 
 The packet intentionally does not apply Tony's Native American flute K2 correction table to this head. These instruments use a fujara-style true sound window and internal flue, so the sound-window correction must be measured.
 
+Measured, inferred, and unknown geometry are separated as follows:
+
+- Measured: none yet for the P0 fipple head in this repository.
+- Inferred: fujara-style windway/window starter dimensions and source-observed body lengths.
+- Unknown: the actual sound-window correction, final hole perturbation, and production-ready fipple setting.
+
 Before final CAD:
 
-1. Build `P0-FIPPLE-HEAD`.
-2. Record the root pitch of an unholed body.
-3. Back-solve the sound-window correction.
-4. Update `Kaval-Alghosazi-Design.xlsx`.
-5. Regenerate `hole-schedule.csv` if offsets move more than 0.100 in.
+1. Build `P0-FIPPLE-HEAD` from scrap or a short matching-bore tile.
+2. Record the root pitch of an unholed body or matched test channel with temperature/RH.
+3. Back-solve the sound-window correction with `L_eff = c/(2 * measured_root_hz)` and `sound_window_correction = L_eff - labium_to_foot - foot_end_correction`.
+4. Record the result in `sound-window-correction-log.csv`.
+5. Update `Kaval-Alghosazi-Design.xlsx`.
+6. Regenerate `hole-schedule.csv` if offsets move more than 0.100 in.
+7. Keep readiness at `L1_packet` until the measured correction and tuning rows exist.
+"""
+
+
+P0_FIPPLE_HEAD_MEASUREMENT_MD = """
+# P0 Fipple Head Measurement Procedure
+
+## Purpose
+
+Build `P0-FIPPLE-HEAD` before committing a full kaval or Alghosazi body. The goal is to measure whether the end mouth inlet, internal windway, true side sound window, and splitting edge produce a stable tone, then back-solve the sound-window correction that the current hole schedules only estimate.
+
+## Geometry Authority
+
+- Measured: none yet in this repository.
+- Inferred: starter windway/window values from Tony's fujara-style CAD notes and source-observed flute lengths.
+- Unknown: final sound-window correction, production plug setting, final hole centers, and final hole diameters.
+
+Generated images and SVG previews are layout aids. Fabrication authority comes from the workbook, `family-spec.csv`, `hole-schedule.csv`, CAD/design-table files, and future measured P0 rows.
+
+## Build Setup
+
+1. Use a scrap block or short split-blank section with a 0.875 in bore or half-bore test channel.
+2. Mark the bore centerline, labium/splitting-edge datum, and top-to-window datum.
+3. Cut the end mouth inlet and fit a removable flue plug.
+4. Prepare plug shim trials at 0.033, 0.038, and 0.045 in windway height.
+5. Start with a 0.320 in long by 0.500 in wide side sound window.
+6. Keep the splitting-edge offset in the 0.005-0.015 in starter range.
+
+## Measurement Pass
+
+For each trial, change only one variable and log:
+
+- plug shim height;
+- window length and width;
+- splitting-edge offset;
+- bore ID and labium-to-foot length;
+- temperature and relative humidity;
+- measured root pitch from a tuner;
+- attack quality, choking, overblow behavior, and recorder/phone audio file name.
+
+## Back-Solve
+
+Use the first stable tone to compute:
+
+```text
+L_eff_measured = c / (2 * measured_root_hz)
+foot_end_correction = 0.6 * bore_radius
+sound_window_correction = L_eff_measured - labium_to_foot - foot_end_correction
+```
+
+Record the result in `sound-window-correction-log.csv`. If the correction shifts any hole center by more than 0.100 in, update the workbook and regenerate `hole-schedule.csv`, `kaval-hole-schedule.csv`, and `alghosazi-hole-schedule.csv`.
+
+## Promotion Gate
+
+Do not mark the packet L2, build-ready, validated, or production-ready until the P0 log contains measured geometry, measured pitch, environment, and the resulting correction. Until then the packet remains `L1_packet` with measurement-required gates.
 """
 
 
