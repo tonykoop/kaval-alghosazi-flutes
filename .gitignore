@@ -3,3 +3,6 @@
 .~lock.*
 .DS_Store
 __pycache__/
+
+# Stash-recovery sidecars
+stash-recovered-*/
