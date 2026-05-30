@@ -490,7 +490,7 @@ Image sources:
 Wolfram starter for physics, optimization, visualization, and validation.
 
 ```wolfram
-(* Kaval + Alghosazi starter. Full v4.2 packet source is in wolfram/instrument-model.wl after generation. *)
+(* Kaval + Alghosazi starter. Full v4.2 packet source is in wolfram/kaval-alghosazi-flutes-wolfram-model.wl after generation. *)
 ClearAll["Global`*"];
 cInPerSec = 13552;
 freqFromMidi[midi_, a4_: 440] := a4*2^((midi - 69)/12);
