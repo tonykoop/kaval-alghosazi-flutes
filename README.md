@@ -42,6 +42,8 @@ This is a first-pass engineering packet. Dimensions are parametric and source-ba
 
 Current readiness is `L1_packet`: fabrication drawings and schedules are starter artifacts, while the fipple/head correction, final hole locations, and production readiness remain measurement-required.
 
+V5 migration status: `L1_packet`. Existing SVGs, OpenSCAD, CNC plans, renders, and print/site artifacts are registered in `visual-output-register.csv`; CAD/DXF authority, MCP provenance, sound-window correction, and measured tuning remain pending measurement.
+
 ## Attribution
 
 The kaval references come from Moldavian/Romanian shepherd-flute practice; the Alghosazi references point toward Anasazi/Basketmaker flute replicas and contemporary adaptations. This packet is a modern shop design by Tony Koop, built with respect for those lineages and explicit source notes in `sources.md`.
