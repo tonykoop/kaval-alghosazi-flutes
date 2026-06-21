@@ -53,5 +53,23 @@
     "Round 30 keeps readiness at L1_packet until P0 measured geometry and sound-window correction evidence exist.",
     "Use the HTML file for browser print-to-PDF when no PDF tooling is available.",
     "PPTX/DOCX were produced with pandoc; PDF was produced with the local simple PDF writer."
-  ]
+  ],
+  "engineering": {
+    "wolfram": [
+      {
+        "source_file": "woodwind/kaval-alghosazi-flutes/kaval-alghosazi-flutes-starter.wl",
+        "cloud_path": "Musical_Instruments/woodwinds/kaval-alghosazi-flutes/kaval-alghosazi-flutes-starter.wl",
+        "cloud_url": "https://www.wolframcloud.com/obj/wrfcoin/Musical_Instruments/woodwinds/kaval-alghosazi-flutes/kaval-alghosazi-flutes-starter.wl",
+        "permission": "Public-Execute",
+        "kind": "acoustics-starter"
+      },
+      {
+        "source_file": "woodwind/kaval-alghosazi-flutes/wolfram/kaval-alghosazi-flutes-wolfram-model.wl",
+        "cloud_path": "Musical_Instruments/woodwinds/kaval-alghosazi-flutes/kaval-alghosazi-flutes-wolfram-model.wl",
+        "cloud_url": "https://www.wolframcloud.com/obj/wrfcoin/Musical_Instruments/woodwinds/kaval-alghosazi-flutes/kaval-alghosazi-flutes-wolfram-model.wl",
+        "permission": "Public-Execute",
+        "kind": "geometry-model"
+      }
+    ]
+  }
 }
