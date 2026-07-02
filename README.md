@@ -35,8 +35,12 @@ Start with these prototypes:
 | `cnc/` | v4.2 operation plan and setup sheet. |
 | `validation.csv` | Tuning and empirical correction log. |
 | `capstone-deck.pptx`, `print-packet.pdf`, `site/index.html` | Presentation, shop print, and build-log deliverables. |
+| `wolfram/kaval-alghosazi-flutes-wolfram-model.wl` | Existing acoustic model source; pending P0 measured correction. |
+| `evolution/` | Evolution-pipeline Stage 0 intake: master manifest, design-intent, revision register (Gate A not yet run). |
 
 ## Status
+
+**Status:** L1 concept packet
 
 This is a first-pass engineering packet. Dimensions are parametric and source-backed where possible, but the fipple/sound-window correction is marked as a measured-prototype variable, not a borrowed NAF K2 correction.
 
