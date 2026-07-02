@@ -1,0 +1,42 @@
+{
+  "product": "kaval-alghosazi-flutes",
+  "pipeline": "studiopipeline:evolution-pipeline",
+  "stage": "0-intake",
+  "master_revision": "pre-commit intake, 2026-07-01",
+  "generated": "2026-07-01",
+  "cad_masters": [
+    {
+      "path": "cad/kaval_alghosazi_master.scad",
+      "format": "openscad-source",
+      "sha256": "c42d454dca177201263adffe5e6119c1dd6b02e1e94f62a42d3a19850f0d5d58",
+      "authority": "pending_measurement",
+      "lossy": false,
+      "notes": "Parametric CAD starter (family envelope + hole schedule). Kept as-is; not fabrication authority."
+    },
+    {
+      "path": "cad/kaval_alghosazi_body.scad",
+      "format": "openscad-source",
+      "sha256": "21786146c1ea73cd9707182d0e88491040a9f89159951d2f006b13d59cee006a",
+      "authority": "pending_measurement",
+      "lossy": false,
+      "notes": "Body model starter. Kept as-is; fipple/head correction and hole positions remain measurement-required."
+    },
+    {
+      "path": "wolfram/kaval-alghosazi-flutes-wolfram-model.wl",
+      "format": "wolfram-source",
+      "sha256": "5746826e6a775f54674f45272493ef8aed0a25a41a7c3014d20f380c0fc05ee9",
+      "authority": "derived_preview",
+      "lossy": false,
+      "notes": "Existing acoustic model; source-only, pending P0 measured correction."
+    },
+    {
+      "path": "Kaval-Alghosazi-Design.xlsx",
+      "format": "design-table",
+      "sha256": "e3fb7870a6145c4f49f438ee006fb4e052e1e944b8448978cd7332c4566e9df4",
+      "authority": "fabrication",
+      "lossy": false,
+      "notes": "Current dimensional authority (family-spec/hole-schedule inputs)."
+    }
+  ],
+  "notes": "Both existing OpenSCAD starters and the Wolfram model are current masters; no STEP export yet (out of scope). Gate A (Alpha workspace compile) not yet run. Fipple/sound-window correction is a measured-prototype variable (not a borrowed NAF K2 correction) and remains the primary blocking gate per design.md and sound-window-correction-log.csv."
+}
